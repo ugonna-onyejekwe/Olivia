@@ -1,0 +1,88 @@
+@import "../../variables.scss";
+
+.faqs_page {
+  .header {
+    text-align: center;
+
+    h2 {
+      font-family: 25px;
+      text-transform: capitalize;
+
+      @media (max-width: 500px) {
+        font-size: 20px;
+      }
+    }
+
+    p {
+      padding-top: 10px;
+    }
+  }
+
+  .wrapper {
+    margin-top: 50px;
+
+    .box {
+      border-bottom: 1px solid rgb(236, 234, 234);
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      &:first-child {
+        border-top: 1px solid rgb(236, 234, 234);
+      }
+
+      &.active {
+        .txt {
+          height: fit-content;
+          opacity: 1;
+          pointer-events: all;
+          visibility: visible;
+          overflow: visible;
+          position: relative;
+        }
+      }
+      h4 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.4s ease;
+
+        &:hover,
+        &.active {
+          color: $secondary_color;
+
+          span {
+            color: $secondary_color;
+          }
+        }
+
+        @media (max-width: 500px) {
+          font-size: 15px;
+        }
+      }
+
+      .txt {
+        font-size: 15px;
+        font-weight: 600;
+        color: $text_color_light;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        overflow: hidden;
+        position: absolute;
+
+        a {
+          color: rgb(115, 198, 226);
+        }
+      }
+    }
+  }
+}
