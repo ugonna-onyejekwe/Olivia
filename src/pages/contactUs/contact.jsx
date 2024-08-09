@@ -7,7 +7,7 @@ import "./contact.scss";
 
 export const Contact = () => {
   return (
-    <div className="contact_section">
+    <div className="contact_section" id="contact">
       <div className="container">
         <div className="header" data-aos="fade-up">
           <h2>contact us</h2>

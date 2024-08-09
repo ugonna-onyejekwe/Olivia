@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="main_app_con">
       <Navbar />
       <Home />
       <Services />

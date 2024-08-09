@@ -12,7 +12,7 @@ import { reviewsData } from "../../components/data";
 
 export const Reviews = () => {
   return (
-    <div className="reviews_section">
+    <div className="reviews_section" id="reviews">
       <div className="container">
         <div className="header" data-aos="fade-up">
           <h2> our happy customers</h2>

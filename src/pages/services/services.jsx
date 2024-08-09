@@ -6,7 +6,7 @@ import "./services.scss";
 
 export const Services = () => {
   return (
-    <div className="services_con">
+    <div className="services_con" id="services">
       <div className="container">
         <section>
           <div className="img_con" data-aos="fade-up-left">

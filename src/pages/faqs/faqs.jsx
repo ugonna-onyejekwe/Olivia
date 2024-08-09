@@ -5,7 +5,7 @@ import { FaqBox } from "../../components/faqbox";
 
 export const Faqs = () => {
   return (
-    <div className="faqs_page">
+    <div className="faqs_page" id="faq">
       <div className="container">
         <div className="header" data-aos="fade-up">
           <h2>Frequently Asked Questions</h2>

@@ -16,11 +16,21 @@ export const Navbar = () => {
 
         <div className={isActive ? "navigators active" : "navigators"}>
           <div className="links">
-            <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">our service</a>
-            <a href="#">FAQs</a>
-            <a href="#">contact us</a>
+            <a href="#" onClick={() => setIsActive(false)}>
+              home
+            </a>
+            <a href="#services" onClick={() => setIsActive(false)}>
+              our service
+            </a>
+            <a href="#reviews" onClick={() => setIsActive(false)}>
+              reviews
+            </a>
+            <a href="#faq" onClick={() => setIsActive(false)}>
+              FAQs
+            </a>
+            <a href="#contact" onClick={() => setIsActive(false)}>
+              contact us
+            </a>
           </div>
           <div className="btn">
             <button>sign in</button>

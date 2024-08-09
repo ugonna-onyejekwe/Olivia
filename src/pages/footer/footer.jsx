@@ -22,10 +22,11 @@ export const Footer = () => {
           <h3>quick links</h3>
           <div className="links">
             <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">our services</a>
-            <a href="#">FAQs</a>
-            <a href="#">contact us</a>
+            <a href="#services">our services</a>
+            <a href="#reviews">reviews</a>
+
+            <a href="#faq">FAQs</a>
+            <a href="#contact">contact us</a>
           </div>
         </div>
         <div className="box_3">
