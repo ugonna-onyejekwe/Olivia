@@ -10,11 +10,13 @@ import { Reviews } from "./pages/reviews/reviews";
 import { Services } from "./pages/services/services";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Achievements } from "./pages/achievements/achievement";
 
 function App() {
   useEffect(() => {
     AOS.init({
       duration: 700,
+      once: true,
     });
   }, []);
 
@@ -22,6 +24,7 @@ function App() {
     <div className="main_app_con">
       <Navbar />
       <Home />
+      <Achievements />
       <Services />
       <GetApp />
       <Reviews />

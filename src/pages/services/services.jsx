@@ -24,7 +24,7 @@ export const Services = () => {
               succeed in today's competitive market.
             </p>
 
-            <button>read more</button>
+            <button>get started</button>
           </div>
         </section>
 
@@ -44,7 +44,7 @@ export const Services = () => {
               experience.
             </p>
 
-            <button>read more</button>
+            <button>get started</button>
           </div>
         </section>
 
@@ -64,7 +64,7 @@ export const Services = () => {
               Nigeria.
             </p>
 
-            <button>read more</button>
+            <button>get started</button>
           </div>
         </section>
 
@@ -84,7 +84,7 @@ export const Services = () => {
               a truly personalized digital space.
             </p>
 
-            <button>read more</button>
+            <button>get started</button>
           </div>
         </section>
       </div>
