@@ -1,0 +1,49 @@
+@import "../../variables.scss";
+
+.Sign_up_page {
+  .nav {
+    padding-top: 20px;
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .main {
+    margin-top: 80px;
+    .wrapper {
+      background: $bg_color_alt;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+
+      .form_con {
+        .header {
+          h3 {
+            font-size: 20px;
+          }
+
+          .steps {
+            margin-top: 5px;
+            span {
+              color: $secondary_color;
+            }
+          }
+
+          .subheader {
+            margin-top: 15px;
+            span {
+              color: $primary_color;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 500px) {
+        padding: 15px;
+      }
+    }
+  }
+}

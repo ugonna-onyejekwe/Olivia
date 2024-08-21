@@ -1,0 +1,41 @@
+@import "../../variables.scss";
+
+.enterEmail_section {
+  form {
+    margin-top: 5px;
+    .terms {
+      margin-top: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: $text_color;
+
+      span {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+
+    .btns {
+      display: flex;
+      justify-content: right;
+      margin-top: 20px;
+    }
+  }
+
+  .switch {
+    text-align: center;
+    margin-top: 20px;
+    color: $text_color;
+    font-weight: 500;
+    font-size: 15px;
+
+    a {
+      color: $secondary_color;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

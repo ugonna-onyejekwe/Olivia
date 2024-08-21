@@ -1,0 +1,116 @@
+@import "../../variables.scss";
+
+.services_con {
+  margin-top: 120px;
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    section {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+
+      &:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+
+      // &:nth-child(3) {
+      .img_con {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        height: fit-content;
+
+        .wrapper {
+          height: 500px;
+          width: 500px;
+          position: relative;
+          background: #f1124a0f;
+          // background: $bg_color_alt;
+          border-radius: 50%;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: fit-content;
+          }
+        }
+      }
+      // }
+
+      .img_con {
+        width: 50%;
+        // height: 350px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .txt_con {
+        width: 50%;
+
+        h2 {
+          font-size: 25px;
+          text-transform: capitalize;
+        }
+
+        p {
+          padding: 20px 0;
+        }
+      }
+
+      @media (max-width: 900px) {
+        flex-direction: column;
+        gap: 20px;
+
+        &:nth-child(odd) {
+          flex-direction: column;
+        }
+
+        .img_con {
+          width: 100%;
+          border-radius: 10px;
+        }
+
+        .txt_con {
+          width: 100%;
+
+          p {
+            padding: 15px 0 20px 0;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .img_con {
+          // height: 300px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .img_con {
+          // height: 250px;
+        }
+
+        .txt_con h2 {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 425px) {
+        .img_con {
+          // height: 210px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 50px;
+  }
+}

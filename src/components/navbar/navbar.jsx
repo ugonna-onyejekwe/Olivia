@@ -3,6 +3,7 @@ import logo from "../../assets/logo.png";
 import "./navbar.scss";
 import { MdOutlineClose } from "react-icons/md";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -22,9 +23,7 @@ export const Navbar = () => {
             <a href="#services" onClick={() => setIsActive(false)}>
               our service
             </a>
-            <a href="#reviews" onClick={() => setIsActive(false)}>
-              reviews
-            </a>
+
             <a href="#faq" onClick={() => setIsActive(false)}>
               FAQs
             </a>
@@ -32,9 +31,11 @@ export const Navbar = () => {
               contact us
             </a>
           </div>
-          <div className="btn">
-            <button>sign in</button>
-          </div>
+          <Link to={"/login"}>
+            <div className="btn">
+              <button>sign in</button>
+            </div>
+          </Link>
         </div>
 
         <div className="menu_btn" onClick={() => setIsActive(!isActive)}>

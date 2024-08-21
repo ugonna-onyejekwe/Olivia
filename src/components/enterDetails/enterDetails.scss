@@ -1,0 +1,27 @@
+.enterDetails_section {
+  form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .col {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+    }
+
+    textarea {
+      height: 200px;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: right;
+    }
+  }
+}

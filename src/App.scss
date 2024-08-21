@@ -24,11 +24,6 @@ html {
   overflow-x: hidden;
 }
 
-// .main_app_con {
-//   width: 100vw;
-//   overflow-x: hidden;
-// }
-
 p {
   font-family: "Quicksand", sans-serif;
   font-size: 15px;
@@ -79,5 +74,52 @@ button {
 
   &:hover {
     background: #e61347;
+  }
+}
+
+.input_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  .input_box {
+    flex: 1;
+    border: 1px solid rgb(207, 206, 206);
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      color: grey;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 0;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: transparent;
+      padding: 15px;
+
+      &::placeholder {
+        font-size: 14px;
+        font-weight: 500;
+        color: rgb(154, 153, 153);
+      }
+    }
+  }
+
+  .error {
+    font-size: 13px;
+    color: #e61347;
+    font-weight: 400;
   }
 }
