@@ -16,34 +16,6 @@
         flex-direction: row-reverse;
       }
 
-      // &:nth-child(3) {
-      .img_con {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: visible;
-        height: fit-content;
-
-        .wrapper {
-          height: 500px;
-          width: 500px;
-          position: relative;
-          background: #f1124a0f;
-          // background: $bg_color_alt;
-          border-radius: 50%;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 250px;
-            height: fit-content;
-          }
-        }
-      }
-      // }
-
       .img_con {
         width: 50%;
         // height: 350px;

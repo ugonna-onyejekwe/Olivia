@@ -1,26 +1,16 @@
-import template from "../../assets/template.png";
-import retail_solution from "../../assets/retail-solution.jpg";
-import pos from "../../assets/pos.jpg";
-import kiosk from "../../assets/kiosk.jpg";
-import image from "../../assets/img/3.png";
-import image2 from "../../assets/retail.png";
-import image3 from "../../assets/img/3.png";
-import image4 from "../../assets/4.png";
 import "./services.scss";
+import retail from "../../assets/retail.png";
+import kiosk from "../../assets/kiosk.png";
+import payment from "../../assets/payment.png";
+import template from "../../assets/template.png";
 
 export const Services = () => {
   return (
     <div className="services_con" id="services">
       <div className="container">
         <section>
-          {/* <div className="img_con" data-aos="fade-up-left">
-            <img src={image} alt="image" />
-          </div> */}
-
           <div className="img_con" data-aos="fade-up-left">
-            <div className="wrapper">
-              <img src={image} alt="image" />
-            </div>
+            <img src={retail} alt="image" />
           </div>
 
           <div className="txt_con" data-aos="fade-up-right">
@@ -39,14 +29,8 @@ export const Services = () => {
         </section>
 
         <section>
-          {/* <div className="img_con" data-aos="fade-up-right">
-            <img src={image2} alt="image" />
-          </div> */}
-
-          <div className="img_con" data-aos="fade-up-left">
-            <div className="wrapper">
-              <img src={image2} alt="image" />
-            </div>
+          <div className="img_con" data-aos="fade-up-right">
+            <img src={kiosk} alt="image" />
           </div>
 
           <div className="txt_con" data-aos="fade-up-left">
@@ -65,21 +49,18 @@ export const Services = () => {
         </section>
 
         <section>
-          <div className="img_con" data-aos="fade-up-left">
-            <div className="wrapper">
-              <img src={image4} alt="image" />
-            </div>
+          <div className="img_con" data-aos="fade-up-right">
+            <img src={payment} alt="image" />
           </div>
 
-          <div className="txt_con" data-aos="fade-up-right">
-            <h2>Enhanced Agency Banking for Nigeria</h2>
+          <div className="txt_con" data-aos="fade-up-left">
+            <h2>Enhanced Agency Banking </h2>
             <p>
               Our Agency Banking solution brings banking services closer to
-              Nigerians. Through our extensive network of agents, we offer
+              communities. Through our extensive network of agents, we offer
               convenient access to financial transactions, including cash
               deposits, withdrawals, transfers, and bill payments. We are
-              committed to financial inclusion and empowering communities across
-              Nigeria.
+              committed to financial inclusion and empowering communities.
             </p>
 
             <button>get started</button>
@@ -87,14 +68,8 @@ export const Services = () => {
         </section>
 
         <section>
-          {/* <div className="img_con" data-aos="fade-up-right">
-            <img src={image} alt="image" />
-          </div> */}
-
-          <div className="img_con" data-aos="fade-up-left">
-            <div className="wrapper">
-              <img src={image3} alt="image" />
-            </div>
+          <div className="img_con" data-aos="fade-up-right">
+            <img src={template} alt="image" />
           </div>
 
           <div className="txt_con" data-aos="fade-up-left">
