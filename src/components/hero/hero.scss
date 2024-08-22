@@ -10,7 +10,7 @@
   .container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 
     .txt_con {
       width: 50%;
@@ -26,18 +26,14 @@
 
         @media (max-width: 1024px) {
           font-size: 30px;
-          line-height: 35px;
-        }
-
-        @media (max-width: 500px) {
-          font-size: 25px;
-          line-height: normal;
+          line-height: 30px;
         }
       }
 
       p {
         padding: 20px 0;
         color: rgb(219, 214, 214);
+        font-weight: 500;
       }
 
       .download_app_btns {
@@ -72,13 +68,15 @@
       align-items: center;
       gap: 10px;
 
-      .con1 {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+      .img {
+        width: 250px;
 
         img {
-          border-radius: 10px;
+          height: fit-content;
+        }
+
+        @media (max-width: 500px) {
+          width: 200px;
         }
       }
     }
