@@ -1,11 +1,11 @@
 @import "../../variables.scss";
 
 .services_con {
-  margin-top: 120px;
+  margin-top: 150px;
   .container {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 20px;
 
     section {
       display: flex;
@@ -14,6 +14,14 @@
 
       &:nth-child(odd) {
         flex-direction: row-reverse;
+      }
+
+      &:nth-child(3) {
+        margin-top: -50px;
+
+        @media (max-width: 900px) {
+          margin-top: 0;
+        }
       }
 
       .img_con {
@@ -28,6 +36,10 @@
         h2 {
           font-size: 25px;
           text-transform: capitalize;
+
+          @media (max-width: 1024px) {
+            font-size: 23px;
+          }
         }
 
         p {
@@ -41,6 +53,14 @@
 
         &:nth-child(odd) {
           flex-direction: column;
+        }
+
+        &:nth-child(2) {
+          gap: 0;
+
+          .txt_con {
+            margin-top: -30px;
+          }
         }
 
         .img_con {
@@ -57,25 +77,9 @@
         }
       }
 
-      @media (max-width: 768px) {
-        .img_con {
-          // height: 300px;
-        }
-      }
-
       @media (max-width: 500px) {
-        .img_con {
-          // height: 250px;
-        }
-
         .txt_con h2 {
-          font-size: 18px;
-        }
-      }
-
-      @media (max-width: 425px) {
-        .img_con {
-          // height: 210px;
+          font-size: 20px;
         }
       }
     }

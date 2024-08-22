@@ -27,7 +27,7 @@ export const Achievements = () => {
         </div>
         <div className="box">
           <h3>
-            1B+ <span>transactions</span>
+            1B+ <span>processed</span>
           </h3>
           <p>Olivia stores has processed transactions of over 1B+ in volume.</p>
         </div>

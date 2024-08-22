@@ -52,6 +52,10 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+
+      <div className="copyright">
+        <p>© 2024. Olivia Stores. All rights reserved.</p>{" "}
+      </div>
     </footer>
   );
 };

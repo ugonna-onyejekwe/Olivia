@@ -70,13 +70,11 @@
 
       .img {
         width: 250px;
-
-        img {
-          height: fit-content;
-        }
+        height: 500px;
 
         @media (max-width: 500px) {
           width: 200px;
+          height: 400px;
         }
       }
     }
