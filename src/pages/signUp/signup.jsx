@@ -1,9 +1,9 @@
 import React from "react";
 import "./signup.scss";
 import Logo from "../../assets/logo.png";
-import { EnterEmail } from "../../components/emailForm/emailform";
+// import { EnterEmail } from "../../components/emailForm/emailform";
 import { Link } from "react-router-dom";
-import { EnterOTP } from "../../components/enterOTP/enterOTP";
+// import { EnterOTP } from "../../components/enterOTP/enterOTP";
 import { EnterDetails } from "../../components/enterDetails/enterDetails";
 
 export const Signup = () => {
