@@ -1,13 +1,25 @@
 @import "../../variables.scss";
 
 .enterEmail_section {
+  .header .subheader {
+  }
   form {
-    margin-top: 5px;
+    margin-top: 50px;
+
+    input {
+      text-align: center;
+    }
+
+    .error {
+      text-align: center;
+    }
+
     .terms {
-      margin-top: 20px;
+      margin-top: 40px;
       font-size: 15px;
       font-weight: 500;
       color: $text_color;
+      text-align: center;
 
       span {
         color: blue;
@@ -16,15 +28,16 @@
     }
 
     .btns {
-      display: flex;
-      justify-content: right;
-      margin-top: 20px;
+      margin-top: 10px;
+      button {
+        width: 100%;
+      }
     }
   }
 
   .switch {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 100px;
     color: $text_color;
     font-weight: 500;
     font-size: 15px;

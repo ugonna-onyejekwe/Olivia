@@ -36,3 +36,32 @@ export const faqs = [
       "<p>Absolutely!</p><p>Olivia is tailored to cater to businesses of all sizes. Whether you're a start-up, a growing enterprise, or an established business, our services are designed to adapt and scale according to your business needs.</p><p>From small businesses seeking streamlined operations to larger enterprises aiming for enhanced efficiency, Olivia's versatile solutions provide the tools and support necessary for success across various business sizes.</p>",
   },
 ];
+
+export const userdetails = {
+  email: "",
+  firstName: "",
+  lastName: "",
+  password: "",
+  confirmPassword: "",
+  referrerID: "",
+  companyName: "",
+  companyAddress: "",
+  companyPhoneNumber: "",
+  businessCategory: "",
+  aboutCompany: "",
+  country: "",
+};
+
+export const initialFormValue = {
+  firstName: "",
+  lastName: "",
+  password: "",
+  confirmPassword: "",
+  referrerID: "",
+  companyName: "",
+  companyAddress: "",
+  companyPhoneNumber: "",
+  businessCategory: "",
+  aboutCompany: "",
+  country: "",
+};

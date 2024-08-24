@@ -1,9 +1,26 @@
-.enterEmail_section {
+@import "../../variables.scss";
+
+.enterOtp_section {
+  .header .subheader span {
+    color: $secondary_color;
+  }
   form {
-    margin-top: 5px;
+    margin-top: 50px;
 
     input {
       text-align: center;
+      font-weight: 500;
+    }
+
+    .error {
+      text-align: center;
+    }
+
+    .btns {
+      margin-top: 20px;
+      button {
+        width: 100%;
+      }
     }
   }
 }

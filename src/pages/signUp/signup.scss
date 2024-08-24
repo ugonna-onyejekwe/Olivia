@@ -1,48 +1,95 @@
 @import "../../variables.scss";
 
 .Sign_up_page {
-  .nav {
-    padding-top: 20px;
-
-    .logo {
-      width: 50px;
-      height: 50px;
-    }
-  }
+  height: fit-content;
 
   .main {
-    margin-top: 80px;
-    .wrapper {
-      background: $bg_color_alt;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 800px;
-      margin: 0 auto;
+    display: flex;
 
-      .form_con {
-        .header {
-          h3 {
-            font-size: 20px;
-          }
+    .form_wrapper {
+      width: 50%;
+      padding: 0 100px;
 
-          .steps {
-            margin-top: 5px;
-            span {
-              color: $secondary_color;
-            }
-          }
+      &.active {
+        width: 100% !important;
 
-          .subheader {
-            margin-top: 15px;
-            span {
-              color: $primary_color;
-            }
+        .form_container {
+          margin-top: 20px;
+        }
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px 0;
+
+        .logo {
+          height: 50px;
+          width: 50px;
+        }
+
+        .steps p {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 15px;
+
+          span {
+            color: $secondary_color;
           }
         }
       }
 
+      .header {
+        h3 {
+          font-size: 30px;
+          text-align: center;
+        }
+
+        .subheader {
+          text-align: center;
+        }
+      }
+
+      .form_container {
+        margin-top: 50px;
+      }
+
+      @media (max-width: 1024px) {
+        padding: 0 50px;
+      }
+
       @media (max-width: 500px) {
-        padding: 15px;
+        padding: 0 20px;
+      }
+    }
+
+    .img_wrapper {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: $bg_color_alt;
+
+      &.remove {
+        display: none;
+      }
+
+      .img {
+        width: 350px;
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .img_wrapper {
+        display: none;
+      }
+
+      .form_wrapper {
+        width: 100%;
       }
     }
   }

@@ -79,6 +79,10 @@ button {
   &:hover {
     background: #e61347;
   }
+
+  &.loading {
+    opacity: 0.8;
+  }
 }
 
 .input_section {
@@ -112,6 +116,7 @@ button {
       width: 100%;
       background: transparent;
       padding: 15px;
+      font-weight: 500;
 
       &::placeholder {
         font-size: 14px;

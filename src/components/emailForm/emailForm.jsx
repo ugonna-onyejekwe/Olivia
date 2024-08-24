@@ -1,28 +1,71 @@
 import { Link } from "react-router-dom";
 import "./emailForm.scss";
 import { useState } from "react";
+import { useFormik } from "formik";
+import { EmailValidation } from "../../libs/validatorSchema";
+import { oliviaApi } from "../../api/baseurls";
+import { Button } from "../inputs";
+import { setCookie } from "../../libs/cookies";
 
-export const EnterEmail = () => {
-  const [email, setEmail] = useState("");
+export const EnterEmail = ({
+  userSignupDetails,
+  setUserSignupDetails,
+  setsteps,
+}) => {
+  const [isloading, setIsLoading] = useState(false);
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const response = await oliviaApi.get("/signup/confirm/email", {
+        headers: {
+          email: values.email.toLowerCase().trim(),
+        },
+      });
+
+      if (response.data.code === 200) {
+        setCookie("signup-email", values.email.toLowerCase().trim);
+        setUserSignupDetails({ ...userSignupDetails, email: values.email });
+        setsteps(2);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setsteps(2);
+
+    setIsLoading(false);
+    values.email = "";
+  };
+
+  const { values, handleSubmit, errors, handleChange } = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: EmailValidation,
+    onSubmit,
+  });
 
   return (
     <div className="form_con enterEmail_section">
       <div className="header">
         <h3>Get started</h3>
-        <p className="steps">
-          Step <span>1</span> of 3
-        </p>
         <p className="subheader">
           Enter your email in order to recieve your OTP
         </p>
       </div>
 
-      <form action="#">
+      <form onSubmit={handleSubmit}>
         <div className="input_section">
           <div className="input_box">
-            <input type="email" placeholder="Enter your email" />
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={values.email}
+              onChange={handleChange("email")}
+            />
           </div>
-          {false && <p className="error">Email has been used</p>}{" "}
+          {errors && <p className="error">{errors.email}</p>}{" "}
         </div>
 
         <div className="terms">
@@ -30,7 +73,7 @@ export const EnterEmail = () => {
         </div>
 
         <div className="btns">
-          <button>send OTP</button>
+          <Button text={"send OTP"} loading={isloading} />
         </div>
       </form>
 

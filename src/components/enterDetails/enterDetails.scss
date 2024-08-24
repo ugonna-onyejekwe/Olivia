@@ -1,4 +1,18 @@
 .enterDetails_section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+  .header .subheader2 {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+
+    span {
+      color: red;
+    }
+  }
+
   form {
     margin-top: 30px;
     display: flex;
@@ -17,6 +31,20 @@
 
     textarea {
       height: 200px;
+    }
+
+    .select_con .input_box {
+      overflow: visible !important;
+
+      .select {
+        outline: none;
+        // border: 1px solid grey;
+
+        input {
+          border: none;
+          background: red;
+        }
+      }
     }
 
     .btns {

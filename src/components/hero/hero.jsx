@@ -60,7 +60,7 @@ export const Hero = () => {
             slidesPerView={"auto"}
             coverflowEffect={{
               rotate: 0,
-              stretch: 0,
+              stretch: 2,
               depth: 200,
               modifier: 5,
             }}
