@@ -8,7 +8,7 @@ import { oliviaApi } from "../../api/baseurls";
 import { useFormik } from "formik";
 import { DetailsFormVAlidator } from "../../libs/validatorSchema";
 import { initialFormValue } from "../data";
-import { getCookie, removeCookie, setCookie } from "../../libs/cookies";
+import { getCookie, setCookie } from "../../libs/cookies";
 import { useDispatch } from "react-redux";
 import { displayMsg } from "../../libs/reducers/messageSlice";
 
@@ -49,8 +49,7 @@ export const EnterDetails = ({
 
       console.log(response.data);
       setsteps(0);
-      setCookie("currentStep", 1);
-      removeCookie("currentStep");
+      setCookie("currentStep", null);
       setIsLoading(false);
       setUserSignupDetails({
         ...userSignupDetails,

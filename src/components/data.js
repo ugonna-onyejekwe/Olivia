@@ -60,9 +60,9 @@ export const initialFormValue = {
   referrerID: "",
   companyName: "",
   companyAddress: "",
-  companyPhoneNumber: "08101330834",
-  businessCategory: "Fashion",
+  companyPhoneNumber: "",
+  businessCategory: "",
   aboutCompany: "",
-  country: "nigeria",
-  gender: "male",
+  country: "",
+  gender: "",
 };
