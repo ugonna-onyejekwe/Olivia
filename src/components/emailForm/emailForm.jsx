@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./emailForm.scss";
 import { useState } from "react";
-import { useFormik } from "formik";
 import { EmailValidation } from "../../libs/validatorSchema";
 import { oliviaApi } from "../../api/baseurls";
 import { Button } from "../inputs";
 import { setCookie } from "../../libs/cookies";
+import { useFormik } from "formik";
 
 export const EnterEmail = ({
   userSignupDetails,
