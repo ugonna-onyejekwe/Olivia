@@ -53,7 +53,7 @@ export const Signup = () => {
           {/* Enter email section */}
           <div className={"form_container"}>
             {currentStep === 1 ||
-              (!currentStep && (
+              (currentStep === null && (
                 <EnterEmail
                   userSignupDetails={userSignupDetails}
                   setUserSignupDetails={setUserSignupDetails}
