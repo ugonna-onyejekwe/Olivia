@@ -52,14 +52,13 @@ export const Signup = () => {
 
           {/* Enter email section */}
           <div className={"form_container"}>
-            {currentStep === 1 ||
-              (currentStep === null && (
+            {currentStep === 1  && (
                 <EnterEmail
                   userSignupDetails={userSignupDetails}
                   setUserSignupDetails={setUserSignupDetails}
                   setsteps={setCurrentStep}
                 />
-              ))}
+              )}
 
             {/* Enter OTP section */}
             {currentStep === 2 && (
