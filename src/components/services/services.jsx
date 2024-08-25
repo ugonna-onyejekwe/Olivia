@@ -3,8 +3,14 @@ import retail from "../../assets/retail.png";
 import kiosk from "../../assets/kiosk.png";
 import payment from "../../assets/payment.png";
 import template from "../../assets/template.png";
+import { useNavigate } from "react-router-dom";
 
 export const Services = () => {
+  const navigate = useNavigate();
+  const redirect = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="services_con" id="services">
       <div className="container">
@@ -24,7 +30,7 @@ export const Services = () => {
               succeed in today's competitive market.
             </p>
 
-            <button>get started</button>
+            <button onClick={() => redirect()}>get started</button>
           </div>
         </section>
 
@@ -44,7 +50,7 @@ export const Services = () => {
               experience.
             </p>
 
-            <button>get started</button>
+            <button onClick={() => redirect()}>get started</button>
           </div>
         </section>
 
@@ -63,7 +69,7 @@ export const Services = () => {
               committed to financial inclusion and empowering communities.
             </p>
 
-            <button>get started</button>
+            <button onClick={() => redirect()}>get started</button>
           </div>
         </section>
 
@@ -83,7 +89,7 @@ export const Services = () => {
               a truly personalized digital space.
             </p>
 
-            <button>get started</button>
+            <button onClick={() => redirect()}>get started</button>
           </div>
         </section>
       </div>

@@ -170,7 +170,7 @@ export const Login = () => {
             <div className="input_section">
               <div className="input_box">
                 <input
-                  type="email"
+                  type="text"
                   placeholder="Your email"
                   value={values.email}
                   onChange={handleChange("email")}
