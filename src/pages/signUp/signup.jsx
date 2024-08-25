@@ -8,7 +8,7 @@ import signup_image from "../../assets/signup.png";
 import { userdetails } from "../../components/data";
 import success_img from "../../assets/success.png";
 import { getCookie } from "../../libs/cookies";
-import { EnterEmail } from "../../components/emailForm/emailform";
+import { EnterEmail } from "../../components/enterEmail/emailform";
 
 export const Signup = () => {
   const step = getCookie("currentStep");
@@ -51,13 +51,13 @@ export const Signup = () => {
 
           {/* Enter email section */}
           <div className={"form_container"}>
-            {/* {currentStep === 1 && ( */}
-            <EnterEmail
-              userSignupDetails={userSignupDetails}
-              setUserSignupDetails={setUserSignupDetails}
-              setsteps={setCurrentStep}
-            />
-            {/* )} */}
+            {currentStep === 1 && (
+              <EnterEmail
+                userSignupDetails={userSignupDetails}
+                setUserSignupDetails={setUserSignupDetails}
+                setsteps={setCurrentStep}
+              />
+            )}
 
             {/* Enter OTP section */}
             {currentStep === 2 && (
