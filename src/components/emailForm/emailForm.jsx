@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { EmailValidation } from "../../libs/validatorSchema";
 import { oliviaApi } from "../../api/baseurls";
 import { Button } from "../inputs";
-import { getCookie, setCookie } from "../../libs/cookies";
+import { setCookie } from "../../libs/cookies";
 
 export const EnterEmail = ({
   userSignupDetails,
