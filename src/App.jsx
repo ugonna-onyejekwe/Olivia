@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/home";
 import { Login } from "./pages/login/login";
 import { Signup } from "./pages/signUp/signup";
+import { Message_bannner } from "./components/messageBanner/message";
 
 function App() {
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="main_app_con">
+      <Message_bannner />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

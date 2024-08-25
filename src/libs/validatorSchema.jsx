@@ -32,3 +32,8 @@ export const DetailsFormVAlidator = yup.object({
     .required("Enter country of business category"),
   aboutCompany: yup.string().trim().required("Enter company's description"),
 });
+
+export const LoginValidation = yup.object({
+  email: yup.string().trim().email().required("Enter email address"),
+  password: yup.string().trim().required("Enter OTP"),
+});

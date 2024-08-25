@@ -87,6 +87,7 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
             className="previous_btn"
             onClick={() => {
               setsteps(1);
+              setCookie("currentStep", 1);
             }}
           >
             back

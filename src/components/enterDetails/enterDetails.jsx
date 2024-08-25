@@ -39,7 +39,7 @@ export const EnterDetails = ({
         name: `${values.firstName.trim()}` + " " + `${values.lastName.trim()}`,
         gender: values.gender.trim(),
         group: values.businessCategory.trim(),
-        password: values.password,
+        password: values.password.trim(),
         phonenumber: values.phonenumber,
         refereremail: values.referrerID.trim(),
       });
