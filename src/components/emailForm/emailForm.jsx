@@ -16,7 +16,7 @@ export const EnterEmail = ({
 
   const onSubmit = async () => {
     setIsLoading(true);
-    setCookie("signup-email", values.email.toLowerCase().trim());
+    // setCookie("signup-email", values.email.toLowerCase().trim());
 
     try {
       const response = await oliviaApi.get("/signup/confirm/email", {
@@ -40,7 +40,7 @@ export const EnterEmail = ({
     values.email = "";
   };
 
-  const { values, handleSubmit, errors, handleChange } = useFormik({
+  const { values, handleSubmit, errors, touched, handleChange } = useFormik({
     initialValues: {
       email: "",
     },
@@ -61,13 +61,13 @@ export const EnterEmail = ({
         <div className="input_section">
           <div className="input_box">
             <input
-              type="email"
+              type="text"
               placeholder="Enter your email"
               value={values.email}
               onChange={handleChange("email")}
             />
           </div>
-          {errors && <p className="error">{errors.email}</p>}{" "}
+          {errors && touched.email && <p className="error">{errors.email}</p>}{" "}
         </div>
 
         <div className="terms">

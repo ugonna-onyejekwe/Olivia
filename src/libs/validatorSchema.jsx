@@ -20,7 +20,7 @@ export const DetailsFormVAlidator = yup.object({
     .string()
     .trim()
     .required("Required")
-    .oneOf([yup.ref("password")], "password has to match"),
+    .oneOf([yup.ref("password")], "Password has to match"),
   referrerID: yup.string().trim(),
   companyName: yup.string().trim().required("Enter company's name"),
   companyAddress: yup.string().trim().required("Enter company's address"),
