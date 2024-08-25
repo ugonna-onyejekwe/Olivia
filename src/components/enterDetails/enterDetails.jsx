@@ -49,7 +49,7 @@ export const EnterDetails = ({
 
       console.log(response.data);
       setsteps(0);
-      setCookie("currentStep", null);
+      setCookie("currentStep", 1);
       setIsLoading(false);
       setUserSignupDetails({
         ...userSignupDetails,
