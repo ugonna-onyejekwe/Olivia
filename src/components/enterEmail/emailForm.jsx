@@ -97,6 +97,6 @@
 //   );
 // };
 
-export const EnterEmail = () => {
+export const Email = () => {
   return <h1>ugonna</h1>;
 };
