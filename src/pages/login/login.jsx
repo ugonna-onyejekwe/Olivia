@@ -10,10 +10,13 @@ import { TbEyeClosed } from "react-icons/tb";
 import { LoginValidation } from "../../libs/validatorSchema";
 import { oliviaApi } from "../../api/baseurls";
 import { removeCookie, setCookie } from "../../libs/cookies";
+import { useDispatch } from "react-redux";
+import { displayMsg } from "../../libs/reducers/messageSlice";
 
 export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const dispatch = useDispatch();
 
   // Handle submit function
   const onSubmit = async () => {
@@ -61,13 +64,79 @@ export const Login = () => {
         setCookie("accountBank", staticaccountbank);
         setCookie("accountNumber", staticaccountnumber);
         localStorage.setItem("setup", JSON.stringify(setup));
+
+        // Display login message
+        dispatch(
+          displayMsg({
+            message: "Login successful",
+            type: "success",
+          })
+        );
       } else {
-        throw "Incorrect login details";
+        // Display error message
+
+        dispatch(
+          displayMsg({
+            message: "you are not an authorized user",
+            type: "error",
+          })
+        );
       }
-      console.log(response.data.url);
     } catch (error) {
-      console.log(error.message);
+      if (error?.message === "Network error") {
+        dispatch(
+          displayMsg({
+            message: "Check your network connection and try again.",
+            type: "error",
+          })
+        );
+      } else if (
+        error?.response?.data?.error ===
+        "You have a status of PENDING. Please contact Admin"
+      ) {
+        dispatch(
+          displayMsg({
+            message:
+              "Your signup is currently being reviewed. Please try again later.",
+            type: "pending",
+          })
+        );
+      } else if (
+        error?.response?.data?.error ===
+        "You have a status of BLOCKED. Please contact Admin"
+      ) {
+        dispatch(
+          displayMsg({
+            message: "Your account has been blocked, please contact admin.",
+            type: "error",
+          })
+        );
+      } else if (
+        error?.response?.data?.error.includes("returned non unique result.")
+      ) {
+        dispatch(
+          displayMsg({
+            message: "You do not have permission to sign in on the web.",
+            type: "error",
+          })
+        );
+      } else if (error?.response?.data?.error === "User Does Not Exist") {
+        dispatch(
+          displayMsg({
+            message: "User does not exist",
+            type: "error",
+          })
+        );
+      } else {
+        dispatch(
+          displayMsg({
+            message: "Login failed. Invalid credentials",
+            type: "error",
+          })
+        );
+      }
     }
+
     setIsLoading(false);
   };
 

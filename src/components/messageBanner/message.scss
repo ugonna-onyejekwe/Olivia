@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100000;
-  border-bottom: 1px solid rgb(214, 214, 214);
+  border-bottom: 1px solid rgb(186, 184, 184);
   padding: 25px 50px;
   transform: translateY(-110%);
   transition: 0.4s ease;
@@ -13,11 +13,23 @@
     transform: translateY(0);
   }
 
+  &.pending {
+    background: #e4deb3;
+  }
+
+  &.success {
+    background: #c3e1c3;
+  }
+
+  &.error {
+    background: #fdb8b8;
+  }
+
   p {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgb(232, 18, 18);
+    font-size: 16px;
 
     span {
       font-size: 20px;

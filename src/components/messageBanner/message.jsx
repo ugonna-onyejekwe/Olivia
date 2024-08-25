@@ -1,13 +1,20 @@
 import { IoMdCheckmark, IoMdClose } from "react-icons/io";
 import "./message.scss";
+import { useSelector } from "react-redux";
+import { MdOutlinePending } from "react-icons/md";
 
-export const Message_bannner = ({ type, message }) => {
+export const Message_bannner = () => {
+  const isActive = useSelector((state) => state.messager.active);
+  const type = useSelector((state) => state.messager.type);
+  const message = useSelector((state) => state.messager.message);
+
   return (
     <div
-      className="message_banner_con"
-      style={{
-        color: `${type === "error" ? "#fdadad" : "#b3d9b3"}`,
-      }}
+      className={
+        isActive
+          ? `message_banner_con active ${type}`
+          : `message_banner_con ${type}`
+      }
     >
       {type === "error" && (
         <p
@@ -31,18 +38,37 @@ export const Message_bannner = ({ type, message }) => {
         <p
           className={type}
           style={{
-            color: "rgb(15, 158, 15);",
+            color: "rgb(15, 158, 15)",
           }}
         >
           <span
             style={{
-              color: "rgb(15, 158, 15);",
+              color: "rgb(15, 158, 15)",
             }}
           >
             {" "}
             <IoMdCheckmark />
           </span>{" "}
-          {/* {message} */} error message
+          {message}
+        </p>
+      )}
+
+      {type === "pending" && (
+        <p
+          className={type}
+          style={{
+            color: "rgb(170, 149, 14)",
+          }}
+        >
+          <span
+            style={{
+              color: "rgb(170, 149, 14)",
+            }}
+          >
+            {" "}
+            <MdOutlinePending />
+          </span>{" "}
+          {message}
         </p>
       )}
     </div>
