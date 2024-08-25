@@ -20,6 +20,7 @@ export const EnterDetails = ({
   const [supportedCountries, setSupportedCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+
   // const options = [
   //   { value: "chocolate", label: "Chocolate" },
   //   { value: "strawberry", label: "Strawberry" },
@@ -48,7 +49,7 @@ export const EnterDetails = ({
 
       console.log(response.data);
       setsteps(0);
-      setCookie("currentStep", null);
+      setCookie("currentStep", 1);
       removeCookie("currentStep");
       setIsLoading(false);
       setUserSignupDetails({

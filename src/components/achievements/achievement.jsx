@@ -40,7 +40,7 @@ export const Achievements = () => {
       <div className="container">
         <div className="box">
           <h3>
-            {numeral(formattedSignUp).format("0.0a")} <span>users</span>
+            {formattedSignUp} <span>users</span>
           </h3>
           <p>Olivia stores has garnered more than 5K+ successful sign-ups.</p>
         </div>
