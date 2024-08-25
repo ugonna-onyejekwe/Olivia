@@ -59,9 +59,9 @@ export const initialFormValue = {
   confirmPassword: "",
   referrerID: "",
   companyName: "",
-  companyAddress: "",
+  companyAddress: "wqw",
   companyPhoneNumber: "",
-  businessCategory: "",
+  businessCategory: "wdw",
   aboutCompany: "",
-  country: "",
+  country: "dwqdwq",
 };

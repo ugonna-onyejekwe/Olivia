@@ -16,7 +16,11 @@ export const DetailsFormVAlidator = yup.object({
     .trim()
     .required("Password required")
     .min(8, "Password must be up to 8 characters "),
-  confirmPassword: yup.string().trim().required("Required"),
+  confirmPassword: yup
+    .string()
+    .trim()
+    .required("Required")
+    .oneOf([yup.ref("password")], "password has to match"),
   referrerID: yup.string().trim(),
   companyName: yup.string().trim().required("Enter company's name"),
   companyAddress: yup.string().trim().required("Enter company's address"),

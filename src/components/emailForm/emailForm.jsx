@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { EmailValidation } from "../../libs/validatorSchema";
 import { oliviaApi } from "../../api/baseurls";
 import { Button } from "../inputs";
-import { setCookie } from "../../libs/cookies";
+import { getCookie, setCookie } from "../../libs/cookies";
 
 export const EnterEmail = ({
   userSignupDetails,
@@ -16,6 +16,8 @@ export const EnterEmail = ({
 
   const onSubmit = async () => {
     setIsLoading(true);
+    setCookie("signup-email", values.email.toLowerCase().trim());
+
     try {
       const response = await oliviaApi.get("/signup/confirm/email", {
         headers: {
@@ -24,7 +26,7 @@ export const EnterEmail = ({
       });
 
       if (response.data.code === 200) {
-        setCookie("signup-email", values.email.toLowerCase().trim);
+        setCookie("signup-email", values.email.toLowerCase().trim());
         setUserSignupDetails({ ...userSignupDetails, email: values.email });
         setsteps(2);
       }
@@ -33,7 +35,7 @@ export const EnterEmail = ({
     }
 
     setsteps(2);
-
+    setCookie("currentStep", 2);
     setIsLoading(false);
     values.email = "";
   };

@@ -18,8 +18,62 @@
 
     .btns {
       margin-top: 20px;
-      button {
-        width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+
+      .previous_btn {
+        text-transform: capitalize;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 15px 30px;
+        border-radius: 5px;
+        background: $bg_color_alt;
+        color: $primary_color;
+        cursor: pointer;
+      }
+    }
+
+    .refetch_otp {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: $primary_color;
+      font-weight: 500;
+
+      span {
+        color: $secondary_color;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .sending_OTP_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .txt {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+      width: 100%;
+
+      p {
+        font-size: 15px;
       }
     }
   }

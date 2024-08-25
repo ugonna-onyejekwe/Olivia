@@ -7,9 +7,12 @@ import { EnterDetails } from "../../components/enterDetails/enterDetails";
 import signup_image from "../../assets/signup.png";
 import { userdetails } from "../../components/data";
 import { EnterEmail } from "../../components/emailForm/emailform";
+import success_img from "../../assets/success.png";
+import { getCookie } from "../../libs/cookies";
 
 export const Signup = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const step = getCookie("currentStep");
+  const [currentStep, setCurrentStep] = useState(Number(step) || 1);
   const [userSignupDetails, setUserSignupDetails] = useState({
     ...userdetails,
   });
@@ -19,7 +22,9 @@ export const Signup = () => {
       <div className="main">
         <div
           className={
-            currentStep === 3 ? "form_wrapper active " : "form_wrapper"
+            currentStep === 3 || currentStep === 0
+              ? "form_wrapper active "
+              : "form_wrapper"
           }
         >
           {/* logo section */}
@@ -32,12 +37,14 @@ export const Signup = () => {
             </div>
 
             {/* step count */}
-            <div className="steps">
-              <p>
-                Step <span>{currentStep}</span>
-                of 3
-              </p>
-            </div>
+            {currentStep === 0 || (
+              <div className="steps">
+                <p>
+                  Step <span>{currentStep}</span>
+                  of 3
+                </p>
+              </div>
+            )}
           </div>
 
           {/* From section */}
@@ -65,14 +72,40 @@ export const Signup = () => {
               <EnterDetails
                 userSignupDetails={userSignupDetails}
                 setUserSignupDetails={setUserSignupDetails}
+                setsteps={setCurrentStep}
               />
+            )}
+
+            {/* sucess message */}
+            {currentStep === 0 && (
+              <div className="success_message">
+                <h3>congratulations!</h3>
+
+                <div className="img">
+                  <img src={success_img} alt="success image" />
+                </div>
+
+                <p>
+                  Hello <b>{userSignupDetails.firstName}</b>, your account has
+                  been successfully created, it might take some minutes for our
+                  team to get your account ready.{" "}
+                </p>
+
+                <Link to="/login">
+                  <button>Countinue to login</button>
+                </Link>
+              </div>
             )}
           </div>
         </div>
 
         {/* img_wrapper */}
         <div
-          className={currentStep === 3 ? "img_wrapper remove" : "img_wrapper"}
+          className={
+            currentStep === 3 || currentStep === 0
+              ? "img_wrapper remove"
+              : "img_wrapper"
+          }
         >
           <div className="img">
             <img src={signup_image} alt="sign up image" />

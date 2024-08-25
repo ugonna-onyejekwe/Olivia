@@ -1,16 +1,22 @@
 import "./enterDetails.scss";
-import { Password_input } from "../inputs";
+import { Button, Password_input } from "../inputs";
 import { useState } from "react";
 import Select from "react-select";
 import { selectInputStyle } from "../../libs/selectInputStlye";
 // import axios from "axios";
-// import { oliviaApi } from "../../api/baseurls";
+import { oliviaApi } from "../../api/baseurls";
 import { useFormik } from "formik";
 import { DetailsFormVAlidator } from "../../libs/validatorSchema";
 import { initialFormValue } from "../data";
+import { getCookie, setCookie } from "../../libs/cookies";
 
-export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
+export const EnterDetails = ({
+  userSignupDetails,
+  setUserSignupDetails,
+  setsteps,
+}) => {
   const [supportedCountries, setSupportedCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = [
     { value: "chocolate", label: "Chocolate" },
@@ -18,9 +24,39 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
     { value: "vanilla", label: "Vanilla" },
   ];
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    const userEmail = getCookie("signup-email");
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+    setIsLoading(true);
+
+    try {
+      const response = await oliviaApi.post("/signup/signup", {
+        address: values.address.trim(),
+        companyname: values.companyName.trim(),
+        country: values.country.trim(),
+        description: values.aboutCompany.trim(),
+        email: userEmail || userSignupDetails.email.toLowerCase().trim(),
+        name: `${values.firstName.trim()}` + " " + `${values.lastName.trim()}`,
+        gender: values.gender.trim(),
+        group: values.businessCategory.trim(),
+        password: values.password,
+        phonenumber: values.phonenumber,
+        refereremail: values.referrerID.trim(),
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    setUserSignupDetails({ ...userSignupDetails, firstName: values.firstName });
+    console.log(userSignupDetails);
+    setsteps(0);
+    setCookie("currentStep", 1);
+    setIsLoading(false);
+  };
+
+  const { values, handleChange, handleSubmit, touched, errors } = useFormik({
     initialValues: initialFormValue,
     validationSchema: DetailsFormVAlidator,
     onSubmit,
@@ -77,7 +113,9 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
                 onChange={handleChange("firstName")}
               />
             </div>
-            {errors && <p className="error">{errors.firstName}</p>}{" "}
+            {errors && touched.firstName && (
+              <p className="error">{errors.firstName}</p>
+            )}{" "}
           </div>
 
           <div className="input_section">
@@ -89,7 +127,9 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
                 onChange={handleChange("lastName")}
               />
             </div>
-            {errors && <p className="error">{errors.lastName}</p>}{" "}
+            {errors && touched.lastName && (
+              <p className="error">{errors.lastName}</p>
+            )}{" "}
           </div>
         </div>
 
@@ -98,14 +138,16 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
           <Password_input
             value={values.password}
             setValue={handleChange}
-            error={errors}
+            error={errors.password}
+            touched={touched.password}
             type=""
           />
 
           <Password_input
             value={values.confirmPassword}
             setValue={handleChange}
-            error={errors}
+            error={errors.confirmPassword}
+            touched={touched.confirmPassword}
             type="confirm"
           />
         </div>
@@ -133,19 +175,23 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
                 onChange={handleChange("companyName")}
               />
             </div>
-            {errors && <p className="error">{errors.companyName}</p>}{" "}
+            {errors && touched.companyName && (
+              <p className="error">{errors.companyName}</p>
+            )}{" "}
           </div>
 
           <div className="input_section">
             <div className="input_box">
               <input
-                type="text"
+                type="number"
                 placeholder="Company's phone no."
                 value={values.companyPhoneNumber}
                 onChange={handleChange("companyPhoneNumber")}
               />
             </div>
-            {errors && <p className="error">{errors.companyPhoneNumber}</p>}{" "}
+            {errors && touched.companyPhoneNumber && (
+              <p className="error">{errors.companyPhoneNumber}</p>
+            )}{" "}
           </div>
         </div>
 
@@ -161,7 +207,9 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
               className="select"
             />
           </div>
-          {errors && <p className="error">{errors.companyAddress}</p>}{" "}
+          {errors && touched.companyAddress && (
+            <p className="error">{errors.companyAddress}</p>
+          )}{" "}
         </div>
 
         {/*section5  */}
@@ -176,7 +224,9 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
               className="select"
             />
           </div>
-          {errors && <p className="error">{errors.country}</p>}{" "}
+          {errors && touched.country && (
+            <p className="error">{errors.country}</p>
+          )}{" "}
         </div>
 
         {/*section7  */}
@@ -190,7 +240,9 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
               className="select"
             />
           </div>
-          {errors && <p className="error">{errors.businessCategory}</p>}{" "}
+          {errors && touched.businessCategory && (
+            <p className="error">{errors.businessCategory}</p>
+          )}{" "}
         </div>
 
         {/*section8  */}
@@ -199,15 +251,17 @@ export const EnterDetails = ({ userSignupDetails, setUserSignupDetails }) => {
             <textarea
               type="text"
               placeholder="About company"
-              value={userSignupDetails.aboutCompany}
+              value={values.aboutCompany}
               onChange={handleChange("aboutCompany")}
             />
           </div>
-          {errors && <p className="error">{errors.aboutCompany}</p>}{" "}
+          {errors && touched.aboutCompany && (
+            <p className="error">{errors.aboutCompany}</p>
+          )}{" "}
         </div>
 
         <div className="btns">
-          <button>create my account</button>
+          <Button text={"Create my account"} loading={isLoading} />
         </div>
       </form>
     </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { TbEyeClosed } from "react-icons/tb";
-import { BeatLoader, PropagateLoader, SyncLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
-export const Password_input = ({ value, setValue, error, type }) => {
+export const Password_input = ({ value, setValue, error, touched, type }) => {
   const [showPass, setShowPass] = useState(false);
 
   return (
@@ -24,11 +24,7 @@ export const Password_input = ({ value, setValue, error, type }) => {
           {showPass ? <TbEyeClosed /> : <MdOutlineRemoveRedEye />}
         </span>
       </div>
-      {error && (
-        <p className="error">
-          {type === "confirm" ? error.confirmPassword : error.password}
-        </p>
-      )}{" "}
+      {error && touched && <p className="error">{error}</p>}
     </div>
   );
 };
