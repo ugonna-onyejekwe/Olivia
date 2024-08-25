@@ -6,6 +6,8 @@ import { oliviaApi } from "../../api/baseurls";
 import { Button } from "../inputs";
 import { setCookie } from "../../libs/cookies";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { displayMsg } from "../../libs/reducers/messageSlice";
 
 export const EnterEmail = ({
   userSignupDetails,
@@ -13,10 +15,10 @@ export const EnterEmail = ({
   setsteps,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const onSubmit = async () => {
     setIsLoading(true);
-    // setCookie("signup-email", values.email.toLowerCase().trim());
 
     try {
       const response = await oliviaApi.get("/signup/confirm/email", {
@@ -29,13 +31,19 @@ export const EnterEmail = ({
         setCookie("signup-email", values.email.toLowerCase().trim());
         setUserSignupDetails({ ...userSignupDetails, email: values.email });
         setsteps(2);
+        setCookie("currentStep", 2);
       }
     } catch (error) {
       console.log(error);
+      dispatch(
+        displayMsg({
+          message: error.message,
+          type: "error",
+        })
+      );
     }
 
-    setsteps(2);
-    setCookie("currentStep", 2);
+    // setsteps(2);
     setIsLoading(false);
     values.email = "";
   };

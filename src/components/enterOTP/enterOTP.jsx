@@ -6,11 +6,14 @@ import { useFormik } from "formik";
 import { getCookie, setCookie } from "../../libs/cookies";
 import { oliviaApi } from "../../api/baseurls";
 import { BeatLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { displayMsg } from "../../libs/reducers/messageSlice";
 
 export const EnterOTP = ({ userSignupDetails, setsteps }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [resendingOTP, setResendingOTP] = useState(false);
   const currentUserEmail = getCookie("signup-email");
+  const dispatch = useDispatch();
 
   // HAndle submit function
   const onSubmit = async () => {
@@ -27,10 +30,16 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
       }
     } catch (error) {
       console.log(error.message, "error");
+      dispatch(
+        displayMsg({
+          message: error.message,
+          type: "error",
+        })
+      );
     }
     setIsLoading(false);
-    setCookie("currentStep", 3);
-    setsteps(3);
+    // setCookie("currentStep", 3);
+    // setsteps(3);
   };
 
   // initializing Formik

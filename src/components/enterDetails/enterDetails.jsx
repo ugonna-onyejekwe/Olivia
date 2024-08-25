@@ -1,14 +1,16 @@
 import "./enterDetails.scss";
 import { Button, Password_input } from "../inputs";
 import { useState } from "react";
-import Select from "react-select";
-import { selectInputStyle } from "../../libs/selectInputStlye";
+// import Select from "react-select";
+// import { selectInputStyle } from "../../libs/selectInputStlye";
 // import axios from "axios";
 import { oliviaApi } from "../../api/baseurls";
 import { useFormik } from "formik";
 import { DetailsFormVAlidator } from "../../libs/validatorSchema";
 import { initialFormValue } from "../data";
-import { getCookie, setCookie } from "../../libs/cookies";
+import { getCookie, removeCookie } from "../../libs/cookies";
+import { useDispatch } from "react-redux";
+import { displayMsg } from "../../libs/reducers/messageSlice";
 
 export const EnterDetails = ({
   userSignupDetails,
@@ -17,12 +19,12 @@ export const EnterDetails = ({
 }) => {
   const [supportedCountries, setSupportedCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  const dispatch = useDispatch();
+  // const options = [
+  //   { value: "chocolate", label: "Chocolate" },
+  //   { value: "strawberry", label: "Strawberry" },
+  //   { value: "vanilla", label: "Vanilla" },
+  // ];
 
   const onSubmit = async () => {
     const userEmail = getCookie("signup-email");
@@ -31,28 +33,40 @@ export const EnterDetails = ({
 
     try {
       const response = await oliviaApi.post("/signup/signup", {
-        address: values.address.trim(),
-        companyname: values.companyName.trim(),
-        country: values.country.trim(),
-        description: values.aboutCompany.trim(),
-        email: userEmail || userSignupDetails.email.toLowerCase().trim(),
-        name: `${values.firstName.trim()}` + " " + `${values.lastName.trim()}`,
-        gender: values.gender.trim(),
-        group: values.businessCategory.trim(),
-        password: values.password.trim(),
+        address: values.address,
+        companyname: values.companyName,
+        country: values.country,
+        description: values.aboutCompany,
+        email: userEmail || userSignupDetails.email.toLowerCase(),
+        name: `${values.firstName}` + " " + `${values.lastName}`,
+        gender: values.gender,
+        group: values.businessCategory,
+        password: values.password,
         phonenumber: values.phonenumber,
-        refereremail: values.referrerID.trim(),
+        refereremail: values.referrerID,
       });
 
       console.log(response.data);
+      setsteps(0);
+      removeCookie("currentStep");
+      setIsLoading(false);
+      setUserSignupDetails({
+        ...userSignupDetails,
+        firstName: values.firstName,
+      });
     } catch (error) {
-      console.log(error.message);
+      dispatch(
+        displayMsg({
+          message: error.message,
+          type: "error",
+        })
+      );
+      console.log(error);
     }
 
-    setUserSignupDetails({ ...userSignupDetails, firstName: values.firstName });
-    console.log(userSignupDetails);
-    setsteps(0);
-    setCookie("currentStep", 1);
+    // console.log(userSignupDetails);
+    // setsteps(0);
+    // setCookie("currentStep", 1);
     setIsLoading(false);
   };
 
@@ -100,6 +114,11 @@ export const EnterDetails = ({
           the same as the name in your BVN <span>*</span>
         </p>
       </div>
+
+      {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam
+      placeat exercitationem impedit alias, saepe, beatae corporis laborum
+      labore explicabo consectetur facere ex officiis blanditiis sequi. Ut quis
+      nam nisi? */}
 
       <form onSubmit={handleSubmit}>
         {/* name section1 */}
@@ -153,14 +172,30 @@ export const EnterDetails = ({
         </div>
 
         {/* section3 */}
-        <div className="input_section">
-          <div className="input_box">
-            <input
-              type="text"
-              placeholder="Your referrer email/ID (optional)"
-              value={values.referrerID}
-              onChange={handleChange("referrerID")}
-            />
+        <div className="col">
+          <div className="input_section">
+            <div className="input_box">
+              <input
+                type="text"
+                placeholder="Enter your gender"
+                value={values.gender}
+                onChange={handleChange("gender")}
+              />
+            </div>
+            {errors && touched.gender && (
+              <p className="error">{errors.gender}</p>
+            )}{" "}
+          </div>
+
+          <div className="input_section">
+            <div className="input_box">
+              <input
+                type="text"
+                placeholder="Your referrer email/ID (optional)"
+                value={values.referrerID}
+                onChange={handleChange("referrerID")}
+              />
+            </div>
           </div>
         </div>
 
@@ -197,7 +232,7 @@ export const EnterDetails = ({
 
         {/*section6 */}
         <div className="input_section select_con">
-          <div className="input_box">
+          {/* <div className="input_box">
             <Select
               options={options}
               value={values.companyAddress}
@@ -205,6 +240,14 @@ export const EnterDetails = ({
               styles={selectInputStyle}
               placeholder="Enter company's address"
               className="select"
+            />
+          </div> */}
+          <div className="input_box">
+            <input
+              type="text"
+              placeholder="Company's address "
+              value={values.companyAddress}
+              onChange={handleChange("companyAddress")}
             />
           </div>
           {errors && touched.companyAddress && (
@@ -214,7 +257,7 @@ export const EnterDetails = ({
 
         {/*section5  */}
         <div className="input_section select_con">
-          <div className="input_box">
+          {/* <div className="input_box">
             <Select
               // options={options}
               options={supportedCountries}
@@ -222,6 +265,14 @@ export const EnterDetails = ({
               styles={selectInputStyle}
               placeholder="Enter country of residence"
               className="select"
+            />
+          </div> */}
+          <div className="input_box">
+            <input
+              type="text"
+              placeholder="Your country"
+              value={values.country}
+              onChange={handleChange("country")}
             />
           </div>
           {errors && touched.country && (
@@ -231,13 +282,21 @@ export const EnterDetails = ({
 
         {/*section7  */}
         <div className="input_section select_con">
-          <div className="input_box">
+          {/* <div className="input_box">
             <Select
               options={options}
               onChange={handleChange("businessCategory")}
               styles={selectInputStyle}
               placeholder="Select your business category"
               className="select"
+            />
+          </div> */}
+          <div className="input_box">
+            <input
+              type="text"
+              placeholder="Your business category"
+              value={values.businessCategory}
+              onChange={handleChange("businessCategory")}
             />
           </div>
           {errors && touched.businessCategory && (

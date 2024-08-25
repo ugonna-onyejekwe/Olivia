@@ -13,6 +13,7 @@ import { EnterEmail } from "../../components/enterEmail/enterEmail";
 export const Signup = () => {
   const step = getCookie("currentStep");
   const [currentStep, setCurrentStep] = useState(Number(step) || 1);
+  // const [currentStep, setCurrentStep] = useState(3);
   const [userSignupDetails, setUserSignupDetails] = useState({
     ...userdetails,
   });
