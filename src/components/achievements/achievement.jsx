@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./achievements.scss";
 import { oliviaApi } from "../../api/baseurls";
 import numeral from "numeral";
+import { BeatLoader } from "react-spinners";
+import { LineLoader } from "../inputs";
 
 export const Achievements = () => {
   const [utilsData, setUtilsData] = useState({
@@ -40,30 +42,67 @@ export const Achievements = () => {
       <div className="container">
         <div className="box">
           <h3>
-            {formattedSignUp} <span>users</span>
+            {utilsData.signups ? formattedSignUp : <LineLoader />}{" "}
+            <span>users</span>
           </h3>
-          <p>Olivia stores has garnered more than 5K+ successful sign-ups.</p>
+          <p>
+            Olivia stores has garnered more than{" "}
+            {utilsData.signups ? formattedSignUp : <LineLoader />} successful
+            sign-ups.
+          </p>
         </div>
+
         <div className="box">
           <h3>
             {" "}
-            {utilsData.countries} <span>countries</span>
-          </h3>
-          <p>Users exist in over 46 countries.</p>
-        </div>
-        <div className="box">
-          <h3>
-            {numeral(formattedOrder).format("0.0a")} <span>orders</span>
+            {utilsData.countries ? utilsData.countries : <LineLoader />}{" "}
+            <span>countries</span>
           </h3>
           <p>
-            Over 3K+ orders have been successfully processed on Olivia stores.
+            Users exist in over{" "}
+            {utilsData.countries ? utilsData.countries : <LineLoader />}{" "}
+            countries.
           </p>
         </div>
+
         <div className="box">
           <h3>
-            {numeral(formatted).format("0.0a")} <span>processed</span>
+            {utilsData.orders ? (
+              numeral(formattedOrder).format("0.0a")
+            ) : (
+              <LineLoader />
+            )}{" "}
+            <span>orders</span>
           </h3>
-          <p>Olivia stores has processed transactions of over 1B+ in volume.</p>
+          <p>
+            Over{" "}
+            {utilsData.orders ? (
+              numeral(formattedOrder).format("0.0a")
+            ) : (
+              <LineLoader />
+            )}{" "}
+            orders have been successfully processed on Olivia stores.
+          </p>
+        </div>
+
+        <div className="box">
+          <h3>
+            {utilsData.processed ? (
+              numeral(formatted).format("0.0a")
+            ) : (
+              <LineLoader />
+            )}{" "}
+            <span>processed</span>
+          </h3>
+          <p>
+            Olivia stores has processed transactions of over{" "}
+            {utilsData.processed ? (
+              numeral(formatted).format("0.0a")
+            ) : (
+              <LineLoader />
+            )}{" "}
+            in volume.
+          </p>
         </div>
       </div>
     </div>

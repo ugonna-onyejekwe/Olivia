@@ -2,8 +2,6 @@ import "./hero.scss";
 import hero1 from "../../assets/hero1.png";
 import hero2 from "../../assets/hero2.png";
 import hero3 from "../../assets/hero3.png";
-import getAppG from "../../assets/download-g.png";
-import getAppA from "../../assets/download-a.png";
 import { Link } from "react-router-dom";
 
 // swiper
@@ -14,6 +12,8 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/autoplay";
+import { BsApple } from "react-icons/bs";
+import { FaGooglePlay } from "react-icons/fa";
 
 export const Hero = () => {
   return (
@@ -36,12 +36,25 @@ export const Hero = () => {
           </div>
 
           <div className="download_app_btns">
-            <Link to={"/"} className="img">
-              <img src={getAppG} alt="get app on google store" />
+            <Link to={"/"} className="download_btn">
+              <span>
+                <FaGooglePlay />
+              </span>
+              <div className="col">
+                <p>get it on</p>
+                <h4>google play</h4>
+              </div>
             </Link>
 
-            <Link to={"/"} className="img">
-              <img src={getAppA} alt="get app on apple store" />
+            <Link to={"/"} className="download_btn">
+              <span>
+                <BsApple />
+              </span>
+
+              <div className="col">
+                <p>download on the</p>
+                <h4>app store</h4>
+              </div>
             </Link>
           </div>
         </div>

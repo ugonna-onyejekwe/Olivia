@@ -40,3 +40,11 @@ export const Button = ({ text, loading }) => {
     </button>
   );
 };
+
+export const LineLoader = () => {
+  return (
+    <span>
+      <BeatLoader size={5} color="#2b1864d9" />
+    </span>
+  );
+};

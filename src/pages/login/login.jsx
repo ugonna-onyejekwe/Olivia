@@ -12,6 +12,7 @@ import { oliviaApi } from "../../api/baseurls";
 import { removeCookie, setCookie } from "../../libs/cookies";
 import { useDispatch } from "react-redux";
 import { displayMsg } from "../../libs/reducers/messageSlice";
+import { loginErrors } from "../../components/loginErrors";
 
 export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -83,58 +84,18 @@ export const Login = () => {
         );
       }
     } catch (error) {
-      if (error?.message === "Network error") {
-        dispatch(
-          displayMsg({
-            message: "Check your network connection and try again.",
-            type: "error",
-          })
-        );
-      } else if (
-        error?.response?.data?.error ===
-        "You have a status of PENDING. Please contact Admin"
-      ) {
-        dispatch(
-          displayMsg({
-            message:
-              "Your signup is currently being reviewed. Please try again later.",
-            type: "pending",
-          })
-        );
-      } else if (
-        error?.response?.data?.error ===
-        "You have a status of BLOCKED. Please contact Admin"
-      ) {
-        dispatch(
-          displayMsg({
-            message: "Your account has been blocked, please contact admin.",
-            type: "error",
-          })
-        );
-      } else if (
-        error?.response?.data?.error.includes("returned non unique result.")
-      ) {
-        dispatch(
-          displayMsg({
-            message: "You do not have permission to sign in on the web.",
-            type: "error",
-          })
-        );
-      } else if (error?.response?.data?.error === "User Does Not Exist") {
-        dispatch(
-          displayMsg({
-            message: "User does not exist",
-            type: "error",
-          })
-        );
-      } else {
-        dispatch(
-          displayMsg({
-            message: "Login failed. Invalid credentials",
-            type: "error",
-          })
-        );
-      }
+      const errorMsg = loginErrors(error);
+
+      dispatch(
+        displayMsg({
+          message: errorMsg,
+          type:
+            errorMsg ===
+            "Your signup is currently being reviewed. Please try again later."
+              ? "pending"
+              : "error",
+        })
+      );
     }
 
     setIsLoading(false);

@@ -40,24 +40,60 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        margin-top: 50px;
+        margin-top: 80px;
 
-        .img {
+        .download_btn {
+          display: flex;
+          align-items: center;
+          gap: 7px;
           background: black;
-          border-radius: 6px;
+          border-radius: 5px;
           overflow: hidden;
-          width: 140px;
-          height: 45px;
-          cursor: pointer;
+          padding: 10px 25px;
           transition: 0.4s ease;
 
           &:hover {
-            transform: scale(1.05);
+            background: rgb(12, 12, 12);
+          }
+
+          span {
+            font-size: 20px;
+            color: white;
+            line-height: 0;
+          }
+
+          .col {
+            p {
+              font-size: 10px;
+              text-transform: uppercase;
+              text-align: left !important;
+              color: rgb(231, 229, 229);
+              padding: 0;
+            }
+
+            h4 {
+              text-transform: capitalize;
+              font-size: 15px;
+              text-align: left !important;
+              color: white;
+              font-weight: 500;
+            }
           }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
           justify-content: center;
+        }
+
+        @media (max-width: 425px) {
+          flex-direction: column;
+          gap: 10px;
+
+          .download_btn {
+            width: 200px;
+            justify-content: center;
+            padding: 10px 0;
+          }
         }
       }
     }

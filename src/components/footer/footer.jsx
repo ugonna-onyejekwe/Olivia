@@ -23,8 +23,6 @@ export const Footer = () => {
           <div className="links">
             <a href="#">home</a>
             <a href="#services">our services</a>
-            <a href="#reviews">reviews</a>
-
             <a href="#faq">FAQs</a>
             <a href="#contact">contact us</a>
           </div>

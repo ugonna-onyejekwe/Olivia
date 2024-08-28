@@ -25,7 +25,7 @@ function App() {
   if (messageiaActive === true) {
     setTimeout(() => {
       dispatch(removeMsg());
-    }, 3000);
+    }, 5000);
   }
 
   return (

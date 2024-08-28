@@ -15,7 +15,14 @@ export const DetailsFormVAlidator = yup.object({
     .string()
     .trim()
     .required("Password required")
-    .min(8, "Password must be up to 8 characters "),
+    .min(8, "Password must be up to 8 characters ")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[0-9]/, "Password must contain at least one number")
+    .matches(
+      /[!@#$%^&*()_+{}\[\]:;<>?,./|]/,
+      "Password must contain at least one special character"
+    ),
   confirmPassword: yup
     .string()
     .trim()

@@ -27,9 +27,25 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
       if (response.data.code === 200) {
         setsteps(3);
         setCookie("currentStep", 3);
+        values.otp = "";
       }
     } catch (error) {
-      console.log(error.message, "error");
+      if (error?.response?.data?.error === "Wrong Otp") {
+        dispatch(
+          displayMsg({
+            message: "Incorrect OTP",
+            type: "error",
+          })
+        );
+      } else {
+        dispatch(
+          displayMsg({
+            message: "Unable to send OTP",
+            type: "error",
+          })
+        );
+      }
+
       dispatch(
         displayMsg({
           message: error.message,
@@ -38,8 +54,6 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
       );
     }
     setIsLoading(false);
-    // setCookie("currentStep", 3);
-    // setsteps(3);
   };
 
   // initializing Formik

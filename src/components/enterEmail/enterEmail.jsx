@@ -8,6 +8,7 @@ import { setCookie } from "../../libs/cookies";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { displayMsg } from "../../libs/reducers/messageSlice";
+import { TermsConditions } from "../terms-conditions/terms-conditions";
 
 export const EnterEmail = ({
   userSignupDetails,
@@ -16,6 +17,7 @@ export const EnterEmail = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const [showTerms, setShowTerms] = useState(false);
 
   const onSubmit = async () => {
     setIsLoading(true);
@@ -32,20 +34,34 @@ export const EnterEmail = ({
         setUserSignupDetails({ ...userSignupDetails, email: values.email });
         setsteps(2);
         setCookie("currentStep", 2);
+        values.email = "";
       }
     } catch (error) {
-      console.log(error);
-      dispatch(
-        displayMsg({
-          message: error.message,
-          type: "error",
-        })
-      );
+      if (error?.response?.data?.error === "Email address is not available") {
+        dispatch(
+          displayMsg({
+            message: error.response.data.error,
+            type: "error",
+          })
+        );
+      } else if (error?.response?.data?.error === "User already exist") {
+        dispatch(
+          displayMsg({
+            message: "User already exists with this email",
+            type: "error",
+          })
+        );
+      } else {
+        dispatch(
+          displayMsg({
+            message: error.message || "Unknown error occured",
+            type: "error",
+          })
+        );
+      }
     }
 
-    // setsteps(2);
     setIsLoading(false);
-    values.email = "";
   };
 
   const { values, handleSubmit, errors, touched, handleChange } = useFormik({
@@ -79,7 +95,8 @@ export const EnterEmail = ({
         </div>
 
         <div className="terms">
-          By continuing, you agree to all <span>terms & conditions</span>.
+          By continuing, you agree to all{" "}
+          <span onClick={() => setShowTerms(true)}>terms & conditions</span>.
         </div>
 
         <div className="btns">
@@ -90,6 +107,8 @@ export const EnterEmail = ({
       <div className="switch">
         Already have an account? <Link to="/login">sign in</Link>
       </div>
+
+      {showTerms && <TermsConditions setShowTerms={setShowTerms} />}
     </div>
   );
 };

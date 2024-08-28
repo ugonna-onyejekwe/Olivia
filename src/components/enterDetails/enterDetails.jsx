@@ -29,7 +29,6 @@ export const EnterDetails = ({
 
   const onSubmit = async () => {
     const userEmail = getCookie("signup-email");
-
     setIsLoading(true);
 
     try {
@@ -49,19 +48,31 @@ export const EnterDetails = ({
 
       console.log(response.data);
       setsteps(0);
-      setCookie("currentStep", null);
+      setCookie("currentStep", 1);
       setIsLoading(false);
       setUserSignupDetails({
         ...userSignupDetails,
         firstName: values.firstName,
       });
     } catch (error) {
-      dispatch(
-        displayMsg({
-          message: error.message,
-          type: "error",
-        })
-      );
+      if (error?.message === "Network Error") {
+        dispatch(
+          displayMsg({
+            message: "Check your internet connection and try again",
+            type: "error",
+          })
+        );
+      } else {
+        dispatch(
+          displayMsg({
+            message:
+              error?.response?.data?.error ||
+              "Something went wrong. Try again later",
+            type: "error",
+          })
+        );
+      }
+
       console.log(error);
     }
 

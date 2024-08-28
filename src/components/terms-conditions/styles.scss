@@ -1,0 +1,145 @@
+@import "../../variables.scss";
+
+.main_con {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  overflow-y: scroll;
+  height: 100%;
+  justify-content: center;
+  padding: 50px 30px;
+  z-index: 200;
+
+  .termsConditions_wrapper {
+    height: fit-content;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+
+    .close_btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: $primary_color;
+      cursor: pointer !important;
+      font-size: 20px;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 25px;
+
+      @media (max-width: 500px) {
+        font-size: 20px;
+      }
+    }
+
+    .section_con {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      h4 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      h5 {
+        text-decoration: underline;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .txt {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        p,
+        li,
+        a {
+          font-size: 16px;
+        }
+
+        p,
+        li {
+          line-height: 23px;
+        }
+
+        a {
+          color: rgb(19, 163, 211);
+          transition: 0.4s ease;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          ul {
+            padding-left: 30px;
+          }
+        }
+
+        li {
+          display: flex;
+          gap: 5px;
+
+          span {
+            padding-top: 2px;
+          }
+        }
+      }
+
+      .sec2 {
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        li {
+          display: flex;
+          gap: 10px;
+
+          span {
+            padding-top: 2px;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 50px 20px;
+
+    .termsConditions_wrapper {
+      padding: 20px;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  z-index: 100;
+  opacity: 0.5;
+}
