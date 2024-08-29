@@ -36,7 +36,13 @@ export const Hero = () => {
           </div>
 
           <div className="download_app_btns">
-            <Link to={"/"} className="download_btn">
+            <Link
+              to={
+                "https://play.google.com/store/apps/details?id=com.olivia.gbikna"
+              }
+              target="_blank"
+              className="download_btn"
+            >
               <span>
                 <FaGooglePlay />
               </span>
@@ -46,7 +52,11 @@ export const Hero = () => {
               </div>
             </Link>
 
-            <Link to={"/"} className="download_btn">
+            <Link
+              to={"https://apps.apple.com/us/app/olivia-stores/id6468364773"}
+              className="download_btn"
+              target="_blank"
+            >
               <span>
                 <BsApple />
               </span>

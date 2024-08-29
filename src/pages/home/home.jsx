@@ -5,6 +5,7 @@ import { Achievements } from "../../components/achievements/achievement";
 import { Services } from "../../components/services/services";
 import { Faqs } from "../../components/faqs/faqs";
 import { Contact } from "../../components/contactUs/contact";
+import { MoreServices } from "../../components/moreService/moreServies";
 
 export const Home = () => {
   return (
@@ -17,6 +18,7 @@ export const Home = () => {
         <Hero />
         <Achievements />
         <Services />
+        <MoreServices />
         <Faqs />
         <Contact />
       </div>
