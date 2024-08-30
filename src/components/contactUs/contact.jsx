@@ -4,9 +4,66 @@ import "./contact.scss";
 import { CiMail } from "react-icons/ci";
 import { GiRotaryPhone } from "react-icons/gi";
 import { TermsConditions } from "../terms-conditions/terms-conditions";
+import { Value } from "sass";
+import { ContactFormValidation } from "../../libs/validatorSchema";
+import { useFormik } from "formik";
+import { Button } from "../inputs";
+import { useDispatch } from "react-redux";
+import { displayMsg } from "../../libs/reducers/messageSlice";
+import { oliviaApi } from "../../api/baseurls";
 
 export const Contact = () => {
   const [showTerms, setShowTerms] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const response = await oliviaApi.post("/contact/create", {
+        email: values.email,
+        name: values.name,
+        phoneNumber: values.phoneNumber,
+        message: values.message,
+      });
+
+      console.log(response.data);
+      values.email = "";
+      values.phoneNumber = "";
+      values.name = "";
+      values.message = "";
+
+      dispatch(
+        displayMsg({
+          message: "Message sent successfully",
+          type: "success",
+        })
+      );
+    } catch (error) {
+      if (!error?.response) {
+        dispatch(
+          displayMsg({
+            message: "Server not responding. Check internet",
+            type: "error",
+          })
+        );
+      } else {
+        console.log(error);
+      }
+    }
+    setIsLoading(false);
+  };
+
+  const { errors, handleChange, touched, handleSubmit, values } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
+    },
+    validationSchema: ContactFormValidation,
+    onSubmit,
+  });
 
   return (
     <>
@@ -59,23 +116,66 @@ export const Contact = () => {
           </div>
 
           <div className="form_con">
-            <form action="#">
-              <div className="input_con">
-                <input type="text" placeholder="your name" />
+            <form onSubmit={handleSubmit}>
+              <div
+                className={
+                  errors?.name && touched?.name
+                    ? "input_con error"
+                    : "input_con"
+                }
+              >
+                <input
+                  type="text"
+                  placeholder="your name"
+                  value={values.name}
+                  onChange={handleChange("name")}
+                />
               </div>
 
-              <div className="input_con">
-                <input type="email" placeholder="your email" />
+              <div
+                className={
+                  errors?.email && touched?.email
+                    ? "input_con error"
+                    : "input_con"
+                }
+              >
+                <input
+                  type="email"
+                  placeholder="your email"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                />
               </div>
 
-              <div className="input_con">
-                <input type="number" placeholder="your phone" />
+              <div
+                className={
+                  errors?.phoneNumber && touched?.phoneNumber
+                    ? "input_con error"
+                    : "input_con"
+                }
+              >
+                <input
+                  type="number"
+                  placeholder="your phone"
+                  value={values.phoneNumber}
+                  onChange={handleChange("phoneNumber")}
+                />
               </div>
 
-              <div className="input_con">
-                <textarea placeholder="your message" />
+              <div
+                className={
+                  errors?.message && touched?.message
+                    ? "input_con error"
+                    : "input_con"
+                }
+              >
+                <textarea
+                  placeholder="your message"
+                  value={values.message}
+                  onChange={handleChange("message")}
+                />
               </div>
-              <button>send message</button>
+              <Button text={"send message"} loading={isLoading} />
             </form>
           </div>
         </div>

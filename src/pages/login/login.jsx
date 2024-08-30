@@ -75,7 +75,6 @@ export const Login = () => {
         );
       } else {
         // Display error message
-
         dispatch(
           displayMsg({
             message: "you are not an authorized user",
@@ -83,6 +82,9 @@ export const Login = () => {
           })
         );
       }
+
+      values.email = "";
+      values.password = "";
     } catch (error) {
       const errorMsg = loginErrors(error);
 
@@ -159,6 +161,10 @@ export const Login = () => {
                 <p className="error">{errors.password}</p>
               )}{" "}
             </div>
+
+            <p className="forgetten_pass">
+              Forgotten password? <Link to="/password-reset">reset it </Link>
+            </p>
 
             <div className="btn">
               <Button text={"sign in"} loading={isLoading} />

@@ -94,6 +94,11 @@
           background: white;
           border-radius: 5px;
           overflow: hidden;
+          border: 1px solid transparent;
+
+          &.error {
+            border-color: $secondary_color;
+          }
 
           input,
           textarea {

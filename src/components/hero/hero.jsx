@@ -62,7 +62,7 @@ export const Hero = () => {
               </span>
 
               <div className="col">
-                <p>download on the</p>
+                <p>download on </p>
                 <h4>app store</h4>
               </div>
             </Link>

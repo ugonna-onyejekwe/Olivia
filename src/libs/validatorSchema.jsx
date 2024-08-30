@@ -46,3 +46,31 @@ export const LoginValidation = yup.object({
   email: yup.string().trim().email().required("Enter email address"),
   password: yup.string().trim().required("Enter OTP"),
 });
+
+export const resetPassValidationSchema = yup.object({
+  token: yup.string().trim().required("Enter token"),
+  password: yup
+    .string()
+    .trim()
+    .required("Password required")
+    .min(8, "Password must be up to 8 characters ")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[0-9]/, "Password must contain at least one number")
+    .matches(
+      /[!@#$%^&*()_+{}\[\]:;<>?,./|]/,
+      "Password must contain at least one special character"
+    ),
+  confirmPassword: yup
+    .string()
+    .trim()
+    .required("Required")
+    .oneOf([yup.ref("password")], "Password has to match"),
+});
+
+export const ContactFormValidation = yup.object({
+  name: yup.string().trim().required("Enter Name"),
+  email: yup.string().email().required("Enter email"),
+  phoneNumber: yup.string().trim().required("Enter phone number"),
+  message: yup.string().trim().required("Enter message"),
+});

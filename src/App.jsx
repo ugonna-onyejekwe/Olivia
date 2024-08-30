@@ -9,6 +9,7 @@ import { Signup } from "./pages/signUp/signup";
 import { Message_bannner } from "./components/messageBanner/message";
 import { useDispatch, useSelector } from "react-redux";
 import { removeMsg } from "./libs/reducers/messageSlice";
+import { ResetPass } from "./pages/resetPass/resetPass";
 
 function App() {
   const messageiaActive = useSelector((state) => state.messager.active);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/password-reset" element={<ResetPass />} />
       </Routes>
     </div>
   );
