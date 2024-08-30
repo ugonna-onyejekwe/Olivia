@@ -40,4 +40,8 @@
       font-size: 14px;
     }
   }
+
+  @media (max-width: 500px) {
+    padding: 25px;
+  }
 }
