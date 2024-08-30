@@ -37,7 +37,7 @@ export const EnterDetails = ({
         companyname: values.companyName,
         country: values.country,
         description: values.aboutCompany,
-        email: userEmail || userSignupDetails.email.toLowerCase(),
+        email: userEmail.toLowerCase() || userSignupDetails.email.toLowerCase(),
         name: `${values.firstName}` + " " + `${values.lastName}`,
         gender: values.gender,
         group: values.businessCategory,

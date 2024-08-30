@@ -25,7 +25,7 @@ export const Login = () => {
     try {
       const response = await oliviaApi.post("/signin/web", {
         password: values.password.trim(),
-        username: values.email.trim(),
+        username: values.email.trim().toLowerCase(),
       });
 
       const {
