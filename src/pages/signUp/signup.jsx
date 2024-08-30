@@ -47,10 +47,9 @@ export const Signup = () => {
             )}
           </div>
 
-          {/* From section */}
-
-          {/* Enter email section */}
+          {/* Form section */}
           <div className={"form_container"}>
+            {/* Enter email section */}
             {currentStep === 1 && (
               <EnterEmail
                 userSignupDetails={userSignupDetails}
@@ -58,6 +57,7 @@ export const Signup = () => {
                 setsteps={setCurrentStep}
               />
             )}
+
             {/* Enter OTP section */}
             {currentStep === 2 && (
               <EnterOTP
