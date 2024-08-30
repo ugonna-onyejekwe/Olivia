@@ -14,7 +14,7 @@ export const MoreServices = () => {
   return (
     <div className="moreServices_section">
       <div className="container">
-        <div className="img_container">
+        <div className="img_container" data-aos="fade-right">
           <Swiper
             modules={[Autoplay]}
             grabCursor={true}
@@ -41,7 +41,7 @@ export const MoreServices = () => {
           </Swiper>
         </div>
 
-        <div className="txt_con">
+        <div className="txt_con" data-aos="fade-left">
           <div className={currentSlide === 0 ? "box active" : "box"}>
             <h3> Booking Services</h3>
             <p>

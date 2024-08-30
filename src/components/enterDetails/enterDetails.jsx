@@ -1,13 +1,15 @@
 import "./enterDetails.scss";
-import { Button, Password_input } from "../inputs";
-import { useState } from "react";
-// import Select from "react-select";
-// import { selectInputStyle } from "../../libs/selectInputStlye";
+import { Button, Password_input, SelectInput } from "../inputs";
+import { useEffect, useState } from "react";
 // import axios from "axios";
 import { oliviaApi } from "../../api/baseurls";
 import { useFormik } from "formik";
 import { DetailsFormVAlidator } from "../../libs/validatorSchema";
-import { initialFormValue } from "../data";
+import {
+  businessCategorysOption,
+  genderOptions,
+  initialFormValue,
+} from "../data";
 import { getCookie, setCookie } from "../../libs/cookies";
 import { useDispatch } from "react-redux";
 import { displayMsg } from "../../libs/reducers/messageSlice";
@@ -18,15 +20,13 @@ export const EnterDetails = ({
   setsteps,
 }) => {
   const [supportedCountries, setSupportedCountries] = useState([]);
+  const [suggestedAddresses, setSuggestedAddresses] = useState([]);
+  const [addressLoading, setAddressLoading] = useState(false);
+  const [inputAddress, setInputAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  // const options = [
-  //   { value: "chocolate", label: "Chocolate" },
-  //   { value: "strawberry", label: "Strawberry" },
-  //   { value: "vanilla", label: "Vanilla" },
-  // ];
-
+  // Sign up user
   const onSubmit = async () => {
     const userEmail = getCookie("signup-email");
     setIsLoading(true);
@@ -76,41 +76,70 @@ export const EnterDetails = ({
       console.log(error);
     }
 
-    // console.log(userSignupDetails);
-    // setsteps(0);
-    // setCookie("currentStep", 1);
     setIsLoading(false);
   };
 
-  const { values, handleChange, handleSubmit, touched, errors } = useFormik({
-    initialValues: initialFormValue,
-    validationSchema: DetailsFormVAlidator,
-    onSubmit,
-  });
+  // Initializing Formik
+  const { values, handleChange, handleSubmit, touched, errors, setFieldValue } =
+    useFormik({
+      initialValues: initialFormValue,
+      validationSchema: DetailsFormVAlidator,
+      onSubmit,
+    });
 
-  // useEffect(() => {
-  //   const fetchCountries = async () => {
-  //     try {
-  //       const response = await oliviaApi.get("signup/supported/countries");
-  //       const data = response.data.supportedCurrencies;
-  //       data.map((i) => {
-  //         setSupportedCountries([
-  //           ...supportedCountries,
-  //           {
-  //             value: i.country,
-  //             label: i.country,
-  //           },
-  //         ]);
-  //         console.log(supportedCountries);
-  //       });
-  //       console.log(supportedCountries);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  // Fetch supported countries
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await oliviaApi.get("signup/supported/countries");
+        const data = response.data.supportedCurrencies;
+        const country = data.map((i) => {
+          return {
+            value: i.country,
+            label: i.country,
+          };
+        });
 
-  //   fetchCountries();
-  // });
+        setSupportedCountries([...country]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  // Fetch suggested address
+  useEffect(() => {
+    const fetchAddress = async () => {
+      setAddressLoading(true);
+      try {
+        const response = await oliviaApi.get("aggregator/address/suggestion", {
+          headers: {
+            input: inputAddress,
+          },
+        });
+
+        // console.log(response.data);
+
+        const data = response.data.googleAddresses.predictions;
+        const addresses = data.map((i) => {
+          return {
+            value: i.description,
+            label: i.description,
+          };
+        });
+
+        setSuggestedAddresses([...addresses]);
+      } catch (error) {
+        console.log(error);
+      }
+
+      setAddressLoading(false);
+    };
+
+    fetchAddress();
+  }, [inputAddress]);
 
   return (
     <div className="form_con enterDetails_section">
@@ -126,11 +155,6 @@ export const EnterDetails = ({
           the same as the name in your BVN <span>*</span>
         </p>
       </div>
-
-      {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam
-      placeat exercitationem impedit alias, saepe, beatae corporis laborum
-      labore explicabo consectetur facere ex officiis blanditiis sequi. Ut quis
-      nam nisi? */}
 
       <form onSubmit={handleSubmit}>
         {/* name section1 */}
@@ -185,13 +209,13 @@ export const EnterDetails = ({
 
         {/* section3 */}
         <div className="col">
-          <div className="input_section">
+          <div className="input_section select_con">
             <div className="input_box">
-              <input
-                type="text"
-                placeholder="Enter your gender"
+              <SelectInput
+                options={genderOptions}
                 value={values.gender}
-                onChange={handleChange("gender")}
+                onchange={(value) => setFieldValue("gender", value.value)}
+                placeholder={"Enter your gender"}
               />
             </div>
             {errors && touched.gender && (
@@ -242,49 +266,14 @@ export const EnterDetails = ({
           </div>
         </div>
 
-        {/*section6 */}
-        <div className="input_section select_con">
-          {/* <div className="input_box">
-            <Select
-              options={options}
-              value={values.companyAddress}
-              onChange={handleChange("companyAddress")}
-              styles={selectInputStyle}
-              placeholder="Enter company's address"
-              className="select"
-            />
-          </div> */}
-          <div className="input_box">
-            <input
-              type="text"
-              placeholder="Company's address "
-              value={values.companyAddress}
-              onChange={handleChange("companyAddress")}
-            />
-          </div>
-          {errors && touched.companyAddress && (
-            <p className="error">{errors.companyAddress}</p>
-          )}{" "}
-        </div>
-
         {/*section5  */}
         <div className="input_section select_con">
-          {/* <div className="input_box">
-            <Select
-              // options={options}
-              options={supportedCountries}
-              onChange={handleChange("country")}
-              styles={selectInputStyle}
-              placeholder="Enter country of residence"
-              className="select"
-            />
-          </div> */}
           <div className="input_box">
-            <input
-              type="text"
-              placeholder="Your country"
+            <SelectInput
+              options={supportedCountries}
               value={values.country}
-              onChange={handleChange("country")}
+              onchange={(value) => setFieldValue("country", value.value)}
+              placeholder={"Select your country"}
             />
           </div>
           {errors && touched.country && (
@@ -292,23 +281,34 @@ export const EnterDetails = ({
           )}{" "}
         </div>
 
+        {/*section6 */}
+        <div className="input_section select_con">
+          <div className="input_box">
+            <SelectInput
+              options={suggestedAddresses}
+              value={values.companyAddress}
+              onchange={(value) => setFieldValue("companyAddress", value.value)}
+              placeholder={"Enter company address"}
+              type="address"
+              setAddress={setInputAddress}
+              isLoading={addressLoading}
+            />
+          </div>
+          {errors && touched.companyAddress && (
+            <p className="error">{errors.companyAddress}</p>
+          )}{" "}
+        </div>
+
         {/*section7  */}
         <div className="input_section select_con">
-          {/* <div className="input_box">
-            <Select
-              options={options}
-              onChange={handleChange("businessCategory")}
-              styles={selectInputStyle}
-              placeholder="Select your business category"
-              className="select"
-            />
-          </div> */}
           <div className="input_box">
-            <input
-              type="text"
-              placeholder="Your business category"
+            <SelectInput
+              options={businessCategorysOption}
               value={values.businessCategory}
-              onChange={handleChange("businessCategory")}
+              onchange={(value) =>
+                setFieldValue("businessCategory", value.value)
+              }
+              placeholder={"Select business category"}
             />
           </div>
           {errors && touched.businessCategory && (
@@ -316,7 +316,24 @@ export const EnterDetails = ({
           )}{" "}
         </div>
 
-        {/*section8  */}
+        {/*section8 */}
+        {values.businessCategory === "Others" && (
+          <div className="input_section select_con">
+            <div className="input_box">
+              <input
+                type="text"
+                placeholder="Enter your business category"
+                value={values.businessCategoryAlt}
+                onChange={handleChange("businessCategoryAlt")}
+              />
+            </div>
+            {errors && touched.businessCategory && (
+              <p className="error">{errors.businessCategory}</p>
+            )}{" "}
+          </div>
+        )}
+
+        {/*section9  */}
         <div className="input_section">
           <div className="input_box">
             <textarea

@@ -65,4 +65,24 @@ export const initialFormValue = {
   aboutCompany: "",
   country: "",
   gender: "",
+  businessCategoryAlt: "",
 };
+
+export const businessCategorysOption = [
+  { value: "Fashion", label: "Fashion" },
+  { value: "Electronics", label: "Electronics" },
+  { value: "Toys/DIY", label: "Toys/DIY" },
+  { value: "Beauty/Healthcare", label: "Beauty/Healthcare" },
+  { value: "Food", label: "Food" },
+  { value: "Furniture", label: "Furniture" },
+  { value: "Stationery", label: "Stationery" },
+  { value: "Automobiles", label: "Automobiles" },
+  { value: "Real Estate", label: "Real Estate" },
+  { value: "Software", label: "Software" },
+  { value: "Others", label: "Others" },
+];
+
+export const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+];

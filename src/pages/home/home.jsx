@@ -6,7 +6,8 @@ import { Services } from "../../components/services/services";
 import { Faqs } from "../../components/faqs/faqs";
 import { Contact } from "../../components/contactUs/contact";
 import { MoreServices } from "../../components/moreService/moreServies";
-
+import "./home.scss";
+import image from "../../assets/1.png";
 export const Home = () => {
   return (
     <div className="home_page">

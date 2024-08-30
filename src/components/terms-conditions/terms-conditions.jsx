@@ -683,7 +683,12 @@ export const TermsConditions = ({ setShowTerms }) => {
                   To process your return, send an email to the email address
                   below with your proof of purchase and the return form stating
                   the reason for the return and wait for further instruction:{" "}
-                  <a href="/">Customer.support@gbikna.com</a>
+                  <a
+                    href="mailto:Customer.support@gbikna.com"
+                    className="underline text-info/80 ml-1"
+                  >
+                    Customer.support@gbikna.com
+                  </a>
                 </p>
 
                 <p>
@@ -698,7 +703,13 @@ export const TermsConditions = ({ setShowTerms }) => {
 
                 <p>
                   If you have any questions concerning our return policy, please
-                  contact us at: <a href="/">Customer.support@gbikna.com</a>
+                  contact us at:{" "}
+                  <a
+                    href="mailto:Customer.support@gbikna.com"
+                    className="underline text-info/80 ml-1"
+                  >
+                    Customer.support@gbikna.com
+                  </a>
                 </p>
               </div>
             </section>
@@ -874,8 +885,16 @@ export const TermsConditions = ({ setShowTerms }) => {
                     <span>
                       <VscDebugBreakpointLog />
                     </span>
-                    Deliver this Notice, with all items completed, to Company’s
-                    Designated email address: <a href="/">info@gbikna.com</a>
+                    <p>
+                      Deliver this Notice, with all items completed, to
+                      Company’s Designated email address:{" "}
+                      <a
+                        href="mailto:info@gbikna.com"
+                        className="underline text-info/80 ml-1"
+                      >
+                        info@gbikna.com
+                      </a>
+                    </p>
                   </li>
                 </ul>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { OTP_Validation } from "../../libs/validatorSchema";
-import { Button } from "../inputs";
+import { Button, Password_input } from "../inputs";
 import "./enterOTP.scss";
 import { useFormik } from "formik";
 import { getCookie, setCookie } from "../../libs/cookies";
@@ -8,11 +8,14 @@ import { oliviaApi } from "../../api/baseurls";
 import { BeatLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { displayMsg } from "../../libs/reducers/messageSlice";
+import { TbEyeClosed } from "react-icons/tb";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 export const EnterOTP = ({ userSignupDetails, setsteps }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [resendingOTP, setResendingOTP] = useState(false);
   const currentUserEmail = getCookie("signup-email");
+  const [showOtp, setShowOtp] = useState(false);
   const dispatch = useDispatch();
 
   // HAndle submit function
@@ -45,19 +48,12 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
           })
         );
       }
-
-      dispatch(
-        displayMsg({
-          message: error.message,
-          type: "error",
-        })
-      );
     }
     setIsLoading(false);
   };
 
   // initializing Formik
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       otp: "",
     },
@@ -96,11 +92,15 @@ export const EnterOTP = ({ userSignupDetails, setsteps }) => {
         <div className="input_section">
           <div className="input_box">
             <input
-              type="text"
+              type={showOtp ? "text" : "password"}
               value={values.otp}
               onChange={handleChange("otp")}
               placeholder="Enter OTP"
             />
+
+            <span onClick={() => setShowOtp(!showOtp)}>
+              {showOtp ? <TbEyeClosed /> : <MdOutlineRemoveRedEye />}
+            </span>
           </div>
           {errors && <p className="error"> {errors.otp}</p>}{" "}
         </div>
