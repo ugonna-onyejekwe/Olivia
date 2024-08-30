@@ -44,7 +44,7 @@ export const DetailsFormVAlidator = yup.object({
 
 export const LoginValidation = yup.object({
   email: yup.string().trim().email().required("Enter email address"),
-  password: yup.string().trim().required("Enter OTP"),
+  password: yup.string().trim().required("Enter password"),
 });
 
 export const resetPassValidationSchema = yup.object({

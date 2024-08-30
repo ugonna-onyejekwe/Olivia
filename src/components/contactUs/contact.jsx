@@ -4,7 +4,6 @@ import "./contact.scss";
 import { CiMail } from "react-icons/ci";
 import { GiRotaryPhone } from "react-icons/gi";
 import { TermsConditions } from "../terms-conditions/terms-conditions";
-import { Value } from "sass";
 import { ContactFormValidation } from "../../libs/validatorSchema";
 import { useFormik } from "formik";
 import { Button } from "../inputs";

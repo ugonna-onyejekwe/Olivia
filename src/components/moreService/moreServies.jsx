@@ -1,6 +1,8 @@
 import "./moreServices.scss";
 
-import image1 from "../../assets/1.png";
+import image1 from "../../assets/booking.png";
+import image2 from "../../assets/digitalpro.png";
+import image3 from "../../assets/events.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -33,10 +35,10 @@ export const MoreServices = () => {
               <img src={image1} alt="user image" />
             </SwiperSlide>
             <SwiperSlide className="img">
-              <img src={image1} alt="user image" />
+              <img src={image2} alt="user image" />
             </SwiperSlide>
             <SwiperSlide className="img">
-              <img src={image1} alt="user image" />
+              <img src={image3} alt="user image" />
             </SwiperSlide>
           </Swiper>
         </div>
