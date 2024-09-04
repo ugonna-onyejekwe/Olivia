@@ -1,7 +1,7 @@
 import "./services.scss";
 import retail from "../../assets/retail.png";
-import kiosk from "../../assets/kiosk.png";
-import payment from "../../assets/payment.png";
+import kiosk from "../../assets/kiosk-img.png";
+import payment from "../../assets/pos.png";
 import template from "../../assets/template.png";
 import { useNavigate } from "react-router-dom";
 
