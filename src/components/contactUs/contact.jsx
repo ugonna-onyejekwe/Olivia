@@ -19,14 +19,13 @@ export const Contact = () => {
   const onSubmit = async () => {
     setIsLoading(true);
     try {
-      const response = await oliviaApi.post("/contact/create", {
+      const response = await oliviaApi.post("/external-use/contactus/olivia", {
         email: values.email,
         name: values.name,
         phoneNumber: values.phoneNumber,
         message: values.message,
       });
 
-      console.log(response.data);
       values.email = "";
       values.phoneNumber = "";
       values.name = "";

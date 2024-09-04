@@ -20,7 +20,7 @@ export const Password_input = ({ value, setValue, error, touched, type }) => {
               ? setValue("confirmPassword")
               : setValue("password")
           }
-          placeholder="Password"
+          placeholder={type === "confirm" ? "Confirm password" : "Password"}
         />
 
         <span onClick={() => setShowPass(!showPass)}>

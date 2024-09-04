@@ -28,7 +28,6 @@ export const Achievements = () => {
           signups: response.data.signups,
           processed: response.data.transactionsProcessed,
         });
-        console.log(response.data, "utils");
       } catch (error) {
         console.log(error.message);
       }
@@ -88,7 +87,7 @@ export const Achievements = () => {
         <div className="box">
           <h3>
             {utilsData.processed ? (
-              numeral(formatted).format("0.0a")
+              numeral(formatted).format("0.00a")
             ) : (
               <LineLoader />
             )}{" "}
@@ -97,7 +96,7 @@ export const Achievements = () => {
           <p>
             Olivia stores has processed transactions of over{" "}
             {utilsData.processed ? (
-              numeral(formatted).format("0.0a")
+              numeral(formatted).format("0.00a")
             ) : (
               <LineLoader />
             )}{" "}

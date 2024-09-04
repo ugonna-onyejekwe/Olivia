@@ -85,4 +85,6 @@ export const businessCategorysOption = [
 export const genderOptions = [
   { value: "Male", label: "Male" },
   { value: "Female", label: "Female" },
+  { value: "Prefer not to say", label: "Prefer not to say" },
+  { value: "Other", label: "Other" },
 ];
